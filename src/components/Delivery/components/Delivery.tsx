@@ -40,7 +40,7 @@ const Container = styled.div`
   padding: 40px 0 60px 0;
 `;
 const ContainerDelivery = styled.div`
-  width: 90%;
+  width: var(--container);
   display: flex;
   flex-direction: column;
   align-items: center;

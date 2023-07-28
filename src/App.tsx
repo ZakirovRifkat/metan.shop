@@ -2,14 +2,14 @@ import React from "react";
 import { Header } from "./components/Header/Header";
 import { Footer } from "./components/Footer/components/Footer";
 import { styled } from "styled-components";
-import { Delivery } from "./components/Delivery/components/Delivery";
+import { AboutUs } from "./components/AboutUs/components/AboutUs";
 
 function App() {
   return (
     <Container>
       <Header />
       <Center>
-        <Delivery />
+<AboutUs />
       </Center>
       <Footer />
     </Container>
