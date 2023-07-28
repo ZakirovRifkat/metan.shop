@@ -5,23 +5,23 @@ import { styled } from "styled-components";
 import { Delivery } from "./components/Delivery/components/Delivery";
 
 function App() {
-  return (
-    <Container>
-      <Header />
-      <Center>
-        <Delivery />
-      </Center>
-      <Footer />
-    </Container>
-  );
+    return (
+        <Container>
+            <Header />
+            <Center>
+                <Delivery />
+            </Center>
+            <Footer />
+        </Container>
+    );
 }
 
 const Container = styled.div`
-  width: 100%;
+    width: 100%;
 `;
 const Center = styled.div`
-  width: 100%;
-  min-height: calc(100vh - 100px);
+    width: 100%;
+    min-height: calc(100vh - 100px);
 `;
 
 export default App;

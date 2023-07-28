@@ -14,7 +14,9 @@ export const Header = () => {
                     <NavbarItem>Контакты</NavbarItem>
                     <NavbarItem>О нас</NavbarItem>
                 </NavbarContainer>
+                
                 <Icon image={basket} size={"40px"}></Icon>
+                <BurgerIcon></BurgerIcon>
             </ContentContainer>
         </Container>
     );
@@ -53,7 +55,7 @@ const Icon = styled.div<{ image: string; size: string }>`
 const NavbarContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 30px;
 
     min-width: max-content;
     width: 45%;
@@ -62,6 +64,19 @@ const NavbarContainer = styled.div`
 const NavbarItem = styled.div<{ active?: string }>`
     font-size: 30px;
     color: ${(props) => (props.active ? "var(--secondary)" : "var(--white)")};
+    transition: color 0.1s ease-in;
 
+    &:hover {
+        color: var(--secondary);
+    }
+    @media (max-width:1000px) {
+        display:none;
+    }
     cursor: pointer;
 `;
+const BurgerIcon = styled.span`
+    width:30px;
+    height:2px;
+
+    background-color:var(--white)
+`
