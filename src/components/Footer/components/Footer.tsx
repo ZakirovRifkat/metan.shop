@@ -47,7 +47,7 @@ const Container = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  width: 90%;
+    width: var(--container);
 
     display: flex;
     justify-content: space-between;

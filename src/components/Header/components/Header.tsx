@@ -14,7 +14,7 @@ export const Header = () => {
                     <NavbarItem>Контакты</NavbarItem>
                     <NavbarItem>О нас</NavbarItem>
                 </NavbarContainer>
-                
+
                 <Icon image={basket} size={"40px"}></Icon>
                 <BurgerIcon></BurgerIcon>
             </ContentContainer>
@@ -37,7 +37,7 @@ const ContentContainer = styled.div`
     justify-content: space-between;
     align-items: center;
 
-    width: 90%;
+    width: var(--container);
 `;
 
 const Icon = styled.div<{ image: string; size: string }>`
