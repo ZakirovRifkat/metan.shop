@@ -1,5 +1,5 @@
 import React from "react";
-import { Header } from "./components/Header/Header";
+import { Header } from "./components/Header/components/Header";
 import { Footer } from "./components/Footer/components/Footer";
 import { styled } from "styled-components";
 import { AboutUs } from "./components/AboutUs/components/AboutUs";
@@ -21,7 +21,7 @@ const Container = styled.div`
 `;
 const Center = styled.div`
   width: 100%;
-  min-height: calc(100vh - 110px);
+  min-height: calc(100vh - 100px);
 `;
 
 export default App;
