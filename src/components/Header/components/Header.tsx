@@ -15,8 +15,18 @@ export const Header = () => {
                     <NavbarItem>О нас</NavbarItem>
                 </NavbarContainer>
 
-                <Icon image={basket} size={"40px"}></Icon>
-                <BurgerIcon></BurgerIcon>
+                <BurgerWrap>
+                    <TouchedWrap showed="true">
+                        <Icon image={basket} size={"40px"}></Icon>
+                    </TouchedWrap>
+                    <TouchedWrap>
+                        <BurgerIcon>
+                            <BurgerSpan position={"0%"}></BurgerSpan>
+                            <BurgerSpan position={"50%"}></BurgerSpan>
+                            <BurgerSpan position={"100%"}></BurgerSpan>
+                        </BurgerIcon>
+                    </TouchedWrap>
+                </BurgerWrap>
             </ContentContainer>
         </Container>
     );
@@ -48,8 +58,6 @@ const Icon = styled.div<{ image: string; size: string }>`
 
     width: ${(props) => props.size};
     height: ${(props) => props.size};
-
-    cursor: pointer;
 `;
 
 const NavbarContainer = styled.div`
@@ -59,24 +67,80 @@ const NavbarContainer = styled.div`
 
     min-width: max-content;
     width: 45%;
+
+    @media (max-width: 1000px) {
+        display: none;
+    }
 `;
 
 const NavbarItem = styled.div<{ active?: string }>`
     font-size: 30px;
     color: ${(props) => (props.active ? "var(--secondary)" : "var(--white)")};
-    transition: color 0.1s ease-in;
+    transition: color 0.2s ease-out;
 
     &:hover {
         color: var(--secondary);
     }
-    @media (max-width:1000px) {
-        display:none;
-    }
+
     cursor: pointer;
 `;
-const BurgerIcon = styled.span`
-    width:30px;
-    height:2px;
 
-    background-color:var(--white)
-`
+const BurgerIcon = styled.div`
+    display: none;
+
+    width: 30px;
+    height: 20px;
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+
+    &:active {
+        background-color: rgba(100, 7, 7, 0.4);
+        border-radius: 50%;
+        transition: background-color 0.12s ease-out;
+    }
+
+    @media (max-width: 1000px) {
+        display: block;
+    }
+`;
+
+const BurgerSpan = styled.span<{ position: string }>`
+    display: block;
+    width: 30px;
+    height: 3px;
+
+    background-color: var(--white);
+    transition-duration: 0.25s;
+
+    position: absolute;
+    top: ${(props) => props.position};
+`;
+
+const BurgerWrap = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+`;
+
+const TouchedWrap = styled.div<{ showed?: string }>`
+    display: ${(props) => (props.showed ? "flex" : "none")};
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    cursor: pointer;
+
+    -webkit-tap-highlight-color: transparent;
+
+    &:active {
+        background-color: rgba(53, 53, 53, 0.4);
+        border-radius: 50%;
+        transition: background-color 0.12s ease-out;
+    }
+    @media (max-width: 1000px) {
+        display: flex;
+    }
+`;
