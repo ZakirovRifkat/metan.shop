@@ -2,18 +2,18 @@ import React from "react";
 import { Header } from "./components/Header/components/Header";
 import { Footer } from "./components/Footer/components/Footer";
 import { styled } from "styled-components";
-import { Delivery } from "./components/Delivery/components/Delivery";
+import { AboutUs } from "./components/AboutUs/components/AboutUs";
 
 function App() {
-    return (
-        <Container>
-            <Header />
-            <Center>
-                <Delivery />
-            </Center>
-            <Footer />
-        </Container>
-    );
+  return (
+    <Container>
+      <Header />
+      <Center>
+        <Delivery />
+      </Center>
+      <Footer />
+    </Container>
+  );
 }
 
 const Container = styled.div`

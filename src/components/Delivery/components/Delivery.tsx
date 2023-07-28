@@ -45,11 +45,11 @@ const Container = styled.div`
     padding: 80px 0 100px 0;
 `;
 const ContainerDelivery = styled.div`
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
 `;
 const TextStyle = styled.div`
     color: var(--white);
