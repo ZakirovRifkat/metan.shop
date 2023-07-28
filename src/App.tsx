@@ -21,7 +21,7 @@ const Container = styled.div`
 `;
 const Center = styled.div`
   width: 100%;
-  min-height: calc(100vh - 110px);
+  min-height: calc(100vh - 100px);
 `;
 
 export default App;
