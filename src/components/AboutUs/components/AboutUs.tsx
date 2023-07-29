@@ -94,7 +94,7 @@ const Gallery = styled.div`
     grid-template-rows: 3fr 2fr;
     gap: 30px;
     margin-top: 50px;
-    
+
     @media (max-width: 1200px) {
         gap: 2vw;
     }
@@ -125,21 +125,6 @@ const GalleryItem = styled.div<GalleryType>`
         border-radius: 20px;
     }
 `;
-const GalleryItem1 = styled.div<GalleryType>`
-    display: grid;
-    max-width: ${(props) => (props.maxWidth ? props.maxWidth : "400px")};
-
-    width: ${(props) => (props.width ? props.width : "37vw")};
-
-    border-radius: 30px;
-    grid-area: ${(props) => props.gridArea};
-
-    background-color: red;
-
-    @media (max-width: 600px) {
-        border-radius: 20px;
-    }
-`;
 
 const Сontacts = styled.div`
     display: flex;
@@ -149,6 +134,7 @@ const Сontacts = styled.div`
 
     margin-top: 50px;
 `;
+
 const СontactsIcon = styled.div<{ image: string; size: string }>`
     background-image: url(${(props) => props.image});
     background-size: contain;
@@ -161,6 +147,7 @@ const СontactsIcon = styled.div<{ image: string; size: string }>`
     max-width: 349px;
     max-height: 349px;
 `;
+
 const СontactsContainerInfo = styled.div<{ size: string }>`
     width: ${(props) => props.size};
     max-width: 349px;
@@ -177,6 +164,7 @@ const СontactsContainerText = styled.div`
     justify-content: center;
     gap: 10px;
 `;
+
 const textStyle = css`
     width: 100%;
     color: var(--white);
@@ -188,11 +176,13 @@ const textStyle = css`
         font-size: 13px;
     }
 `;
+
 const СontactsText = styled.a<{ linkB?: string }>`
     ${textStyle}
     font-weight: 500;
     text-decoration: none;
 `;
+
 const СontactsTitle = styled.div`
     ${textStyle}
     font-weight: 600;

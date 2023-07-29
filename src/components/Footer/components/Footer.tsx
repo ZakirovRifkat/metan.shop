@@ -100,7 +100,6 @@ const ContainerInfoBlock = styled.div`
 
 const ContainerInfoBlockItem = styled.div`
     color: var(--white);
-    font-family: Raleway;
     font-size: 16px;
     font-style: normal;
     font-weight: 600;

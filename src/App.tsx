@@ -11,7 +11,7 @@ function App() {
         <Container>
             <Header />
             <Center>
-                <Merch />
+                <AboutUs />
             </Center>
             <Footer />
         </Container>
