@@ -19,13 +19,7 @@ export const AboutUs = () => {
                         gridArea={"main"}
                     />
                     <GalleryItem gridArea={"music"} />
-                    <GalleryItem
-                        maxWidth={"400px"}
-                        maxHeight={"300px"}
-                        width={"37vw"}
-                        height={"31vw"}
-                        gridArea={"quote"}
-                    />
+                    <GalleryItem gridArea={"quote"} />
                 </Gallery>
                 <Сontacts>
                     <СontactsIcon image={logo} size={"43vw"} />
@@ -96,9 +90,12 @@ const Gallery = styled.div`
     grid-template-areas:
         "main music"
         "main quote";
-    gap: 2vw;
-
+    gap: 30px;
     margin-top: 50px;
+    
+    @media (max-width: 1200px) {
+        gap: 2vw;
+    }
 `;
 
 type GalleryType = {
@@ -112,10 +109,25 @@ type GalleryType = {
 const GalleryItem = styled.div<GalleryType>`
     display: grid;
     max-width: ${(props) => (props.maxWidth ? props.maxWidth : "400px")};
-    max-height: ${(props) => (props.maxHeight ? props.maxHeight : "400px")};
+    max-height: ${(props) => (props.maxHeight ? props.maxHeight : "")};
 
     width: ${(props) => (props.width ? props.width : "37vw")};
-    height: ${(props) => (props.height ? props.height : "37vw")};
+    height: ${(props) => (props.height ? props.height : "")};
+
+    border-radius: 30px;
+    grid-area: ${(props) => props.gridArea};
+
+    background-color: red;
+
+    @media (max-width: 600px) {
+        border-radius: 20px;
+    }
+`;
+const GalleryItem1 = styled.div<GalleryType>`
+    display: grid;
+    max-width: ${(props) => (props.maxWidth ? props.maxWidth : "400px")};
+
+    width: ${(props) => (props.width ? props.width : "37vw")};
 
     border-radius: 30px;
     grid-area: ${(props) => props.gridArea};
