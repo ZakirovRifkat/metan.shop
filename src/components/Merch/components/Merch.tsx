@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 import { Card } from "../../Card/components/Card";
+import { Filter } from "../../Filter/components/Filter";
 import filterIcon from "../assets/filterIcon.svg";
 import searchIcon from "../assets/search.svg";
 
@@ -24,7 +25,7 @@ export const Merch = () => {
                         </TouchedWrap>
                     </FilterContainer>
                 </TitleContainer>
-
+                <Filter></Filter>
                 <ContainerGrid>
                     <Card />
                     <Card />
@@ -68,7 +69,7 @@ const ContainerGrid = styled.div`
     grid-column-gap: 30px;
     grid-row-gap: 40px;
 
-    margin-top: 60px;
+    margin-top: 50px;
 
     @media (max-width: 911px) {
         grid-template-columns: 1fr 1fr 1fr;
