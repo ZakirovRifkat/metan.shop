@@ -8,9 +8,10 @@ export const Card = () => {
                 image={
                     "https://thetaste.ru/image/cache/catalog/foto_product/0000_Brands/TASTE/3165/31651-1500x1500.jpg"
                 }
+                draggable={false}
             />
             <TextContainer>
-                <Name>Подвеска “Metan” dsdsd dsdsds dsdss вывывы вывыывы dsdsds dsdsdsd sdsdsds sdsds </Name>
+                <Name>Подвеска “Metan”</Name>
                 <Price>1500 p.</Price>
             </TextContainer>
         </Container>
@@ -18,39 +19,43 @@ export const Card = () => {
 };
 
 const Container = styled.div`
-    display: grid;
-    grid-template-rows: auto 1fr;
-    width: 100%;
     border-radius: 20px;
     background: var(--card);
-    box-shadow: 0px 4px 4px 0px #2c2c2d;
-    padding: 15px;
+    box-shadow: 0px 4px 4px 0px #0000003d;
+    padding: 20px 20px;
 
     @media (max-width: 911px) {
-        min-height: 40vw;
-        padding: 2vw;
-        border-radius: 15px;
+        padding: 2.3vw;
+        border-radius: 12px;
     }
 `;
 
 const Image = styled.div<{ image?: string }>`
-    width: 100%;
-    height: 300px;
+    height: 266px;
     background-image: url(${(props) => props.image});
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 20px;
 
-    @media (max-width: 911px) {
-        height: 30vw;
-        border-radius: 15px;
+    @media (min-width: 1900px) {
+        height: 230px;
+    }
+
+    @media (max-width: 915px) {
+        height: 26vw;
+        border-radius: 12px;
     }
 `;
 
 const TextContainer = styled.div`
     display: flex;
     flex-direction: column;
+    margin-left: 10px;
+
+    @media (max-width: 800px) {
+        margin-left: 1vw;
+    }
 `;
 
 const TextStyle = styled.p`
@@ -80,9 +85,9 @@ const Name = styled(TextStyle)`
     font-weight: 700;
     margin-top: 20px;
     -webkit-line-clamp: 2; /* Ограничение количества строк */
- 
+
     @media (max-width: 800px) {
-        margin-top: 1vw;
+        margin-top: 2vw;
     }
 `;
 

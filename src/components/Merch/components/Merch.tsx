@@ -29,25 +29,28 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
 
-    padding: 40px 0 40px 0;
+    padding: 80px 0 80px 0;
 `;
+
 const ContainerContent = styled.div`
     width: var(--container);
+    max-width: 3000px;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
+
 const ContainerGrid = styled.div`
     width: 100%;
     display: grid;
 
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    grid-column-gap: 20px;
-    grid-row-gap: 20px;
+    grid-column-gap: 30px;
+    grid-row-gap: 40px;
 
     @media (max-width: 911px) {
         grid-template-columns: 1fr 1fr 1fr;
-        grid-column-gap: 1vw;
-        grid-row-gap: 1vw;
+        grid-column-gap: 2.4vw;
+        grid-row-gap: 4vw;
     }
 `;
