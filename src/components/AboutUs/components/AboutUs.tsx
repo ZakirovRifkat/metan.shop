@@ -10,7 +10,23 @@ export const AboutUs = () => {
                 <Quote>
                     “От души душевно в душу. Не луивитон, но пацыки оценят”
                 </Quote>
-                <Gallery></Gallery>
+                <Gallery>
+                    <GalleryItem
+                        maxWidth={"542px"}
+                        maxHeight={"724px"}
+                        width={"47vw"}
+                        height={"70vw"}
+                        gridArea={"main"}
+                    />
+                    <GalleryItem gridArea={"music"} />
+                    <GalleryItem
+                        maxWidth={"400px"}
+                        maxHeight={"300px"}
+                        width={"37vw"}
+                        height={"31vw"}
+                        gridArea={"quote"}
+                    />
+                </Gallery>
                 <Сontacts>
                     <СontactsIcon image={logo} size={"43vw"} />
                     <СontactsContainerInfo size={"43vw"}>
@@ -19,7 +35,9 @@ export const AboutUs = () => {
                             <СontactsText>Тел: +7 (132) 132-42-56</СontactsText>
                             <СontactsText>Почта: user@gmail.com</СontactsText>
                             <СontactsText href={""}>Группа вк</СontactsText>
-                            <СontactsText href={""}>Телеграм-канал</СontactsText>
+                            <СontactsText href={""}>
+                                Телеграм-канал
+                            </СontactsText>
                             <СontactsText href={""}>Youtube</СontactsText>
                             <СontactsText href={""}>Instagram</СontactsText>
                         </СontactsContainerText>
@@ -34,6 +52,8 @@ const Container = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
+
+    padding: 4vw 0 4vw 0;
 `;
 
 const ContainerAboutMe = styled.div`
@@ -64,17 +84,56 @@ const Quote = styled.div`
     font-weight: 600;
     line-height: normal;
 
+    margin-top: 20px;
+
     @media (max-width: 600px) {
         font-size: 27px;
     }
 `;
 
-const Gallery = styled.div``;
+const Gallery = styled.div`
+    display: grid;
+    grid-template-areas:
+        "main music"
+        "main quote";
+    gap: 2vw;
+
+    margin-top: 50px;
+`;
+
+type GalleryType = {
+    maxWidth?: string;
+    maxHeight?: string;
+    width?: string;
+    height?: string;
+    gridArea: "main" | "music" | "quote";
+};
+
+const GalleryItem = styled.div<GalleryType>`
+    display: grid;
+    max-width: ${(props) => (props.maxWidth ? props.maxWidth : "400px")};
+    max-height: ${(props) => (props.maxHeight ? props.maxHeight : "400px")};
+
+    width: ${(props) => (props.width ? props.width : "37vw")};
+    height: ${(props) => (props.height ? props.height : "37vw")};
+
+    border-radius: 30px;
+    grid-area: ${(props) => props.gridArea};
+
+    background-color: red;
+
+    @media (max-width: 600px) {
+        border-radius: 20px;
+    }
+`;
+
 const Сontacts = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+
+    margin-top: 50px;
 `;
 const СontactsIcon = styled.div<{ image: string; size: string }>`
     background-image: url(${(props) => props.image});
