@@ -4,13 +4,14 @@ import { Footer } from "./components/Footer/components/Footer";
 import { styled } from "styled-components";
 import { Delivery } from "./components/Delivery/components/Delivery";
 import { AboutUs } from "./components/AboutUs/components/AboutUs";
+import { Merch } from "./components/Merch/components/Merch";
 
 function App() {
     return (
         <Container>
             <Header />
             <Center>
-                <AboutUs />
+                <Merch />
             </Center>
             <Footer />
         </Container>
