@@ -48,6 +48,7 @@ const Container = styled.div`
 
 const ContentContainer = styled.div`
     width: var(--container);
+    max-width: 3000px;
 
     display: flex;
     justify-content: space-between;

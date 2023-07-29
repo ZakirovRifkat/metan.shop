@@ -48,6 +48,7 @@ const ContentContainer = styled.div`
     align-items: center;
 
     width: var(--container);
+    max-width: 3000px;
 `;
 
 const Icon = styled.div<{ image: string; size: string }>`
