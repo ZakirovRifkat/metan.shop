@@ -90,6 +90,8 @@ const Gallery = styled.div`
     grid-template-areas:
         "main music"
         "main quote";
+
+    grid-template-rows: 3fr 2fr;
     gap: 30px;
     margin-top: 50px;
     
