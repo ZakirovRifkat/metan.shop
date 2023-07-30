@@ -16,10 +16,10 @@ export const Header = () => {
                 </NavbarContainer>
 
                 <BurgerWrap>
-                    <TouchedWrap showed="true">
+                    <TouchedWrap size={"55px"} showed="true">
                         <Icon image={basket} size={"40px"}></Icon>
                     </TouchedWrap>
-                    <TouchedWrap>
+                    <TouchedWrap size={"55px"}>
                         <BurgerIcon>
                             <BurgerSpan position={"0%"}></BurgerSpan>
                             <BurgerSpan position={"50%"}></BurgerSpan>
@@ -46,7 +46,12 @@ const Container = styled.div<{ active?: string }>`
         props.active ? "rgba(0, 0, 0, 1)" : "rgba(0, 0, 0, 0.6)"};
 
     padding: 20px 0;
+
+    @media (max-width: 800px) {
+        padding: 10px 0;
+    }
 `;
+
 const ContentContainer = styled.div`
     display: flex;
     justify-content: space-between;
@@ -131,12 +136,12 @@ const BurgerWrap = styled.div`
     gap: 30px;
 `;
 
-const TouchedWrap = styled.div<{ showed?: string }>`
+const TouchedWrap = styled.div<{ size: string; showed?: string }>`
     display: ${(props) => (props.showed ? "flex" : "none")};
     align-items: center;
     justify-content: center;
-    width: 55px;
-    height: 55px;
+    width: ${(props) => props.size};
+    height: ${(props) => props.size};
     cursor: pointer;
 
     -webkit-tap-highlight-color: transparent;
