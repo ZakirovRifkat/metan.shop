@@ -36,6 +36,11 @@ const Container = styled.div<{ active?: string }>`
     display: flex;
     justify-content: center;
 
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+
     width: 100%;
     background-color: ${(props) =>
         props.active ? "rgba(0, 0, 0, 1)" : "rgba(0, 0, 0, 0.6)"};
