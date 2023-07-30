@@ -5,13 +5,14 @@ import { styled } from "styled-components";
 import { Delivery } from "./components/Delivery/components/Delivery";
 import { AboutUs } from "./components/AboutUs/components/AboutUs";
 import { Merch } from "./components/Merch/components/Merch";
+import { ProductInfo } from "./components/ProductInfo/components/ProductInfo";
 
 function App() {
     return (
         <Container>
             <Header />
             <Center>
-                <Merch />
+                <ProductInfo />
             </Center>
             <Footer />
         </Container>
@@ -20,8 +21,9 @@ function App() {
 
 const Container = styled.div`
     width: 100%;
-    overflow:hidden;
+    overflow: hidden;
 `;
+
 const Center = styled.div`
     width: 100%;
     min-height: calc(100vh - 100px);
