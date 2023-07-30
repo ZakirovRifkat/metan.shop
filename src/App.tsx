@@ -5,6 +5,8 @@ import { styled } from "styled-components";
 import { Delivery } from "./components/Delivery/components/Delivery";
 import { AboutUs } from "./components/AboutUs/components/AboutUs";
 import { Merch } from "./components/Merch/components/Merch";
+import { Banner1, Banner2, Banner3 } from "./components/Banner/components/Banner";
+import { ProductInfo } from "./components/ProductInfo/components/ProductInfo";
 
 function App() {
     return (
