@@ -13,10 +13,11 @@ export const MainBannerAnimation = () => {
             setCurrentComponentIndex(
                 (prevIndex) => (prevIndex + 1) % components.length
             );
-        }, 3000);
+        }, 7000);
     }, [components]);
 
     const CurrentComponent = components[currentComponentIndex];
+    
     return (
         <ComponentsContainer>
             <TransitionGroup component={null}>
@@ -33,13 +34,13 @@ export const MainBannerAnimation = () => {
 };
 
 const Container = styled.div`
-width: 100%;
+    width: 100%;
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
 `;
 const ComponentsContainer = styled.div`
-   position: relative;
-   width: 100%;
-   height: 100vh;
+    position: relative;
+    width: 100%;
+    height: 100vh;
 `;

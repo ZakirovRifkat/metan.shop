@@ -23,7 +23,9 @@ export const Banner2 = () => {
         <Container image={image2}>
             <Blackout />
             <ContainerContent>
-                <Button left={'50%'} center={'-50%'}>СЛУШАТЬ</Button>
+                <Button left={"50%"} center={"-50%"}>
+                    СЛУШАТЬ
+                </Button>
             </ContainerContent>
         </Container>
     );
@@ -32,12 +34,12 @@ export const Banner3 = () => {
     return (
         <Container image={image3}>
             <Blackout />
-            <ContainerContent left={'1'}>
-                <Content left={'1'}>
+            <ContainerContent left={"1"}>
+                <Content left={"1"}>
                     <Title>Концерты</Title>
-                    <Quote left={'1'}>Эмоции. Заряд. Мотивация.</Quote>
+                    <Quote left={"1"}>Эмоции. Заряд. Мотивация.</Quote>
                 </Content>
-                <Button left={'0px'}>КУПИТЬ БИЛЕТЫ</Button>
+                <Button left={"0px"}>КУПИТЬ БИЛЕТЫ</Button>
             </ContainerContent>
         </Container>
     );
@@ -56,13 +58,13 @@ const Container = styled.div<{ image: string }>`
     background-repeat: no-repeat;
     background-size: cover;
 `;
-const ContainerContent = styled.div<{left?:string}>`
+const ContainerContent = styled.div<{ left?: string }>`
     position: relative;
     width: var(--container);
     height: 100vh;
 
     display: flex;
-    justify-content: ${(props)=>props.left? 'start' : 'end'};
+    justify-content: ${(props) => (props.left ? "start" : "end")};
     align-items: center;
 `;
 const Blackout = styled.div`
@@ -79,7 +81,6 @@ const Button = styled.div<{
     left?: string;
     center?: string;
 }>`
-
     left: ${(props) => props.left};
     transform: translate(${(props) => props.center});
 
@@ -122,20 +123,20 @@ const Title = styled.div`
 
     width: max-content;
 `;
-const Quote = styled.div<{left?:string}>`
+const Quote = styled.div<{ left?: string }>`
     color: var(--white);
-    text-align: ${(props)=>props.left? 'left' : 'right'};;
+    text-align: ${(props) => (props.left ? "left" : "right")};
     font-size: 60px;
     font-style: normal;
     font-weight: 600;
     line-height: 120%;
 `;
-const Content = styled.div<{left?:string}>`
-position: relative;
-z-index: 2;
+const Content = styled.div<{ left?: string }>`
+    position: relative;
+    z-index: 2;
     width: 668px;
     display: flex;
     flex-direction: column;
-    align-items: ${(props)=>props.left? 'start' : 'end'};
+    align-items: ${(props) => (props.left ? "start" : "end")};
     gap: 10px;
 `;
