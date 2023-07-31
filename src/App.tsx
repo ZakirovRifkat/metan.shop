@@ -4,16 +4,15 @@ import { Footer } from "./components/Footer/components/Footer";
 import { styled } from "styled-components";
 import { Delivery } from "./components/Delivery/components/Delivery";
 import { AboutUs } from "./components/AboutUs/components/AboutUs";
-import { Merch } from "./components/Merch/components/Merch";
-import { MainBannerAnimation } from "./components/MainBannerAnimation/components/MainBannerAnimation";
 import { ProductInfo } from "./components/ProductInfo/components/ProductInfo";
+import { MainPage } from "./Pages/MainPage";
 
 function App() {
     return (
         <Container>
             <Header />
             <Center>
-                <MainBannerAnimation />
+                <MainPage />
             </Center>
             <Footer />
         </Container>

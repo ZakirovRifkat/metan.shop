@@ -44,6 +44,7 @@ export const Merch = () => {
 };
 
 const Container = styled.div`
+    background: var(--main);
     width: 100%;
     display: flex;
     justify-content: center;
