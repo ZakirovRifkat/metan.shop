@@ -11,14 +11,14 @@ export const MainBannerAnimation = () => {
     const components: any = [Banner1, Banner2, Banner3];
 
     useEffect(() => {
-        const timer = setInterval(() => {
+        const timer = setTimeout(() => {
             setCurrentComponentIndex(
                 (prevIndex) => (prevIndex + 1) % components.length
             );
         }, 7000);
 
         return () => {
-            clearInterval(timer);
+            clearTimeout(timer);
         };
     }, [components]);
 
