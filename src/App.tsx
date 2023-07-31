@@ -5,18 +5,15 @@ import { styled } from "styled-components";
 import { Delivery } from "./components/Delivery/components/Delivery";
 import { AboutUs } from "./components/AboutUs/components/AboutUs";
 import { Merch } from "./components/Merch/components/Merch";
-import { Banner1, Banner2, Banner3 } from "./components/Banner/components/Banner";
+import { MainBannerAnimation } from "./components/MainBannerAnimation/components/MainBannerAnimation";
 import { ProductInfo } from "./components/ProductInfo/components/ProductInfo";
 
 function App() {
     return (
         <Container>
             <Header />
-            <Banner1 />
-            <Banner2 />
-            <Banner3 />
             <Center>
-                <ProductInfo />
+                <MainBannerAnimation />
             </Center>
             <Footer />
         </Container>
@@ -30,7 +27,7 @@ const Container = styled.div`
 
 const Center = styled.div`
     width: 100%;
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 80px);
 `;
 
 export default App;
