@@ -131,6 +131,8 @@ const Quote = styled.div<{left?:string}>`
     line-height: 120%;
 `;
 const Content = styled.div<{left?:string}>`
+position: relative;
+z-index: 2;
     width: 668px;
     display: flex;
     flex-direction: column;
