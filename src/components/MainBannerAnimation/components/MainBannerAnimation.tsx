@@ -2,28 +2,23 @@ import React, { useEffect, useState } from "react";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { styled } from "styled-components";
 import { Banner1, Banner2, Banner3 } from "./Banner";
+import "./anim.css";
 
 export const MainBannerAnimation = () => {
     const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
-    let components: any = [Banner1, Banner2, Banner3];
+    const components: any = [Banner1, Banner2, Banner3];
 
     useEffect(() => {
-        console.log("Заработало");
-
-        const timer = setInterval(() => {
+        setTimeout(() => {
             setCurrentComponentIndex(
                 (prevIndex) => (prevIndex + 1) % components.length
             );
-        }, 1000);
-
-        return () => {
-            clearInterval(timer);
-        };
+        }, 7000);
     }, [components]);
 
     const CurrentComponent = components[currentComponentIndex];
     return (
-        <Container>
+        <ComponentsContainer>
             <TransitionGroup component={null}>
                 <CSSTransition
                     key={currentComponentIndex}
@@ -33,10 +28,13 @@ export const MainBannerAnimation = () => {
                     <Container>{CurrentComponent()}</Container>
                 </CSSTransition>
             </TransitionGroup>
-        </Container>
+        </ComponentsContainer>
     );
 };
 
 const Container = styled.div`
     width: 100%;
+`;
+const ComponentsContainer = styled.div`
+    position: relative;
 `;
