@@ -96,7 +96,7 @@ const Button = styled.div<{
     font-weight: 500;
     line-height: normal;
 
-    bottom: 100px;
+    bottom: 150px;
 
     z-index: 1;
 
