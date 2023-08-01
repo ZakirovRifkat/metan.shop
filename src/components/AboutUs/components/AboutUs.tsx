@@ -6,7 +6,7 @@ import pic1 from "../assets/pic1.jpg";
 import pic2 from "../assets/pic2.jpg";
 import pic3 from "../assets/pic3.jpg";
 import pic4 from "../assets/pic4.jpg";
-import "../../MainBannerAnimation/components/anim.css";
+import "./anim.css";
 
 export const AboutUs = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -92,15 +92,17 @@ const Container = styled.div`
     padding: 200px 0 4vw 0;
 `;
 const GalleryContainer = styled.div`
-    width: 100%;
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
+    transform: translate(-50%);
 `;
 const ComponentsContainer = styled.div`
     position: relative;
     width: 100%;
-    height: 100vh;
+    max-height: 724px;
+    height: 70vw;
+    margin-top: 60px;
 `;
 
 const ContainerAboutMe = styled.div`
@@ -147,7 +149,6 @@ const Gallery = styled.div`
 
     grid-template-rows: 3fr 2fr;
     gap: 30px;
-    margin-top: 60px;
 
     @media (max-width: 1200px) {
         gap: 2vw;
@@ -181,7 +182,6 @@ const GalleryItem = styled.div<GalleryType>`
     background-repeat: no-repeat;
     background-position: center;
 
-    transition: all 0.2s ease-in;
     @media (max-width: 600px) {
         border-radius: 20px;
     }
