@@ -10,17 +10,15 @@ import "./anim.css";
 
 export const AboutUs = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-    const images1 = [pic1, pic2, pic3, pic4];
-    const images2 = [pic2, pic1, pic4, pic3];
-    const images3 = [pic4, pic3, pic2, pic1];
-
+    const images1 = [pic4, pic2, pic1, pic3];
+    const images2 = [pic1, pic3, pic2, pic4];
+    const images3 = [pic3, pic1, pic4, pic2];
     useEffect(() => {
         const timer = setTimeout(() => {
             console.log();
 
             setCurrentImageIndex((prev) => (prev + 1) % images1.length);
-        }, 5000);
+        }, 7000);
         return () => {
             clearTimeout(timer);
         };
@@ -42,7 +40,7 @@ export const AboutUs = () => {
                     <TransitionGroup component={null}>
                         <CSSTransition
                             key={currentImageIndex}
-                            timeout={1000}
+                            timeout={5000}
                             classNames="fade"
                         >
                             <GalleryContainer>
@@ -95,7 +93,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
 
-    padding: 180px 0 4vw 0;
+    padding: 200px 0 4vw 0;
 `;
 const GalleryContainer = styled.div`
     position: absolute;
@@ -105,10 +103,17 @@ const GalleryContainer = styled.div`
 `;
 const ComponentsContainer = styled.div`
     position: relative;
-    width: 100%;
+    max-width: 972px;
+    width: calc(84vw + 30px);
     max-height: 724px;
     height: 70vw;
     margin-top: 60px;
+
+    overflow: hidden;
+
+    @media (max-width: 1200px) {
+        width: 86vw;
+    }
 `;
 
 const ContainerAboutMe = styled.div`

@@ -1,17 +1,30 @@
 .fade-enter {
-    opacity: 0;
+    width: max-content;
+    margin-left: 3000px;
+    overflow: hidden;
+    opacity: 1;
+    z-index: 1;
 }
 
 .fade-enter-active {
-    opacity: 0.8;
-    transition: opacity 1000ms linear;
+    width: max-content;
+    margin-left: 0px;
+    transition: margin-left 0.7s ease-out;
+    overflow: hidden;
+    opacity: 1;
+    z-index: 1;
 }
 
 .fade-exit {
-    opacity: 0.8;
+    width: max-content;
+    overflow: hidden;
+    opacity: 1;
+    z-index: 0;
 }
 
 .fade-exit-active {
-    opacity: 0;
-    transition: opacity 1000ms linear;
+    width: max-content;
+    opacity: 1;
+    z-index: 0;
+    overflow: hidden;
 }
