@@ -38,7 +38,7 @@ export const MainBannerAnimation = () => {
             <SpiderContainer>
                 <Spider
                     image={
-                        currentComponentIndex == 0 ? spiderActive : undefined
+                        currentComponentIndex === 0 ? spiderActive : undefined
                     }
                     onClick={() => {
                         setCurrentComponentIndex(0);
@@ -46,7 +46,7 @@ export const MainBannerAnimation = () => {
                 />
                 <Spider
                     image={
-                        currentComponentIndex == 1 ? spiderActive : undefined
+                        currentComponentIndex === 1 ? spiderActive : undefined
                     }
                     onClick={() => {
                         setCurrentComponentIndex(1);
@@ -54,7 +54,7 @@ export const MainBannerAnimation = () => {
                 />
                 <Spider
                     image={
-                        currentComponentIndex == 2 ? spiderActive : undefined
+                        currentComponentIndex === 2 ? spiderActive : undefined
                     }
                     onClick={() => {
                         setCurrentComponentIndex(2);
@@ -64,6 +64,7 @@ export const MainBannerAnimation = () => {
         </ComponentsContainer>
     );
 };
+
 
 const Container = styled.div`
     width: 100%;

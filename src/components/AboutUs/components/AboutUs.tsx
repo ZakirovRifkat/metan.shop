@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { css, styled } from "styled-components";
 import logo from "../assets/logo.svg";
+import pic1 from "../assets/pic1.jpg";
+import pic2 from "../assets/pic2.jpg";
+import pic3 from "../assets/pic3.jpg";
+import pic4 from "../assets/pic4.jpg";
 
 export const AboutUs = () => {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const images = [pic1, pic2, pic3, pic4];
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setCurrentImageIndex((prev) => (prev + 1) % images.length);
+        }, 1000);
+        return () => {
+            clearTimeout(timer);
+        };
+    }, []);
+    
+    console.log(currentImageIndex);
+    
+    let currentImage = images[currentImageIndex];
     return (
         <Container>
             <ContainerAboutMe>
@@ -17,9 +35,10 @@ export const AboutUs = () => {
                         width={"47vw"}
                         height={"70vw"}
                         gridArea={"main"}
+                        image={currentImage}
                     />
-                    <GalleryItem gridArea={"music"} />
-                    <GalleryItem gridArea={"quote"} />
+                    <GalleryItem image={currentImage} gridArea={"music"} />
+                    <GalleryItem image={currentImage} gridArea={"quote"} />
                 </Gallery>
                 <Сontacts>
                     <СontactsIcon image={logo} size={"43vw"} />
@@ -106,6 +125,7 @@ type GalleryType = {
     width?: string;
     height?: string;
     gridArea: "main" | "music" | "quote";
+    image: string;
 };
 
 const GalleryItem = styled.div<GalleryType>`
@@ -119,7 +139,12 @@ const GalleryItem = styled.div<GalleryType>`
     border-radius: 30px;
     grid-area: ${(props) => props.gridArea};
 
-    background-color: red;
+    background-color: #4d4d4d;
+
+    background-image: url(${(props) => props.image});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 
     @media (max-width: 600px) {
         border-radius: 20px;
