@@ -6,13 +6,17 @@ import { Delivery } from "./components/Delivery/components/Delivery";
 import { AboutUs } from "./components/AboutUs/components/AboutUs";
 import { ProductInfo } from "./components/ProductInfo/components/ProductInfo";
 import { MainPage } from "./Pages/MainPage";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
     return (
         <Container>
             <Header />
             <Center>
-                <MainPage />
+                <Routes>
+                    <Route path={"/"} element={<MainPage />} />
+                    <Route path={"/"} element={<MainPage />} />
+                </Routes>
             </Center>
             <Footer />
         </Container>
