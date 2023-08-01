@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { css, styled } from "styled-components";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 import logo from "../assets/logo.svg";
 import pic1 from "../assets/pic1.jpg";
 import pic2 from "../assets/pic2.jpg";
 import pic3 from "../assets/pic3.jpg";
 import pic4 from "../assets/pic4.jpg";
+import "../../MainBannerAnimation/components/anim.css";
 
 export const AboutUs = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const images = [pic1, pic2, pic3, pic4];
     useEffect(() => {
         const timer = setTimeout(() => {
+            console.log();
+
             setCurrentImageIndex((prev) => (prev + 1) % images.length);
-        }, 1000);
+        }, 5000);
         return () => {
             clearTimeout(timer);
         };
-    }, []);
-    
+    }, [images]);
+
     console.log(currentImageIndex);
-    
+
     let currentImage = images[currentImageIndex];
     return (
         <Container>
@@ -28,18 +32,36 @@ export const AboutUs = () => {
                 <Quote>
                     “От души душевно в душу. Не луивитон, но пацыки оценят”
                 </Quote>
-                <Gallery>
-                    <GalleryItem
-                        maxWidth={"542px"}
-                        maxHeight={"724px"}
-                        width={"47vw"}
-                        height={"70vw"}
-                        gridArea={"main"}
-                        image={currentImage}
-                    />
-                    <GalleryItem image={currentImage} gridArea={"music"} />
-                    <GalleryItem image={currentImage} gridArea={"quote"} />
-                </Gallery>
+                <ComponentsContainer>
+                    <TransitionGroup component={null}>
+                        <CSSTransition
+                            key={currentImageIndex}
+                            timeout={1000}
+                            classNames="fade"
+                        >
+                            <GalleryContainer>
+                                <Gallery>
+                                    <GalleryItem
+                                        maxWidth={"542px"}
+                                        maxHeight={"724px"}
+                                        width={"47vw"}
+                                        height={"70vw"}
+                                        gridArea={"main"}
+                                        image={currentImage}
+                                    />
+                                    <GalleryItem
+                                        image={currentImage}
+                                        gridArea={"music"}
+                                    />
+                                    <GalleryItem
+                                        image={currentImage}
+                                        gridArea={"quote"}
+                                    />
+                                </Gallery>
+                            </GalleryContainer>
+                        </CSSTransition>
+                    </TransitionGroup>
+                </ComponentsContainer>
                 <Сontacts>
                     <СontactsIcon image={logo} size={"43vw"} />
                     <СontactsContainerInfo size={"43vw"}>
@@ -63,10 +85,22 @@ export const AboutUs = () => {
 
 const Container = styled.div`
     width: 100%;
+    position: relative;
     display: flex;
     justify-content: center;
 
     padding: 200px 0 4vw 0;
+`;
+const GalleryContainer = styled.div`
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+`;
+const ComponentsContainer = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100vh;
 `;
 
 const ContainerAboutMe = styled.div`
@@ -105,6 +139,7 @@ const Quote = styled.div`
 `;
 
 const Gallery = styled.div`
+    position: relative;
     display: grid;
     grid-template-areas:
         "main music"
@@ -146,6 +181,7 @@ const GalleryItem = styled.div<GalleryType>`
     background-repeat: no-repeat;
     background-position: center;
 
+    transition: all 0.2s ease-in;
     @media (max-width: 600px) {
         border-radius: 20px;
     }
