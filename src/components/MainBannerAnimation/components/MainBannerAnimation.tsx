@@ -76,3 +76,27 @@ const ComponentsContainer = styled.div`
     width: 100%;
     height: 100vh;
 `;
+
+const SpiderContainer = styled.div`
+    display: flex;
+    gap: 45px;
+
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 4;
+`;
+const Spider = styled.div<{ image?: string }>`
+    width: 33px;
+    height: 33px;
+
+    background-image: url(${(props) => (props.image ? props.image : spider)});
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: all 0.3s linear;
+    
+    cursor: pointer;
+`;
