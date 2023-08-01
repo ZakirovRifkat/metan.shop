@@ -1,12 +1,11 @@
 import React from "react";
+import { styled } from "styled-components";
+import { Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header/components/Header";
 import { Footer } from "./components/Footer/components/Footer";
-import { styled } from "styled-components";
-import { Delivery } from "./components/Delivery/components/Delivery";
-import { AboutUs } from "./components/AboutUs/components/AboutUs";
-import { ProductInfo } from "./components/ProductInfo/components/ProductInfo";
 import { MainPage } from "./Pages/MainPage";
-import { Routes, Route } from "react-router-dom";
+import { DeliveryPage } from "./Pages/DeliveryPage";
+import { AboutUsPage } from "./Pages/AboutUsPage";
 
 function App() {
     return (
@@ -15,7 +14,8 @@ function App() {
             <Center>
                 <Routes>
                     <Route path={"/"} element={<MainPage />} />
-                    <Route path={"/"} element={<MainPage />} />
+                    <Route path={"/delivery"} element={<DeliveryPage />} />
+                    <Route path={"/about"} element={<AboutUsPage />} />
                 </Routes>
             </Center>
             <Footer />

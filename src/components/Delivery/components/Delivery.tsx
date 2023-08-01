@@ -42,7 +42,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 80px 0 100px 0;
+    padding: 200px 0 100px 0;
 `;
 const ContainerDelivery = styled.div`
     width: var(--container);
@@ -83,6 +83,7 @@ const ContainerItems = styled.div`
     max-width: 1100px;
     width: 100%;
     display: grid;
+    margin-top: 50px;
     grid-template-columns: repeat(auto-fit, minmax(406px, 1fr));
     row-gap: 50px;
     @media (max-width: 615px) {

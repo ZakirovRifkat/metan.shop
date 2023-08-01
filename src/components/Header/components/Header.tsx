@@ -2,17 +2,39 @@ import React from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.svg";
 import basket from "../assets/basket.svg";
-
+import { Link, NavLink } from "react-router-dom";
 export const Header = () => {
     return (
         <Container>
             <ContentContainer>
                 <Icon image={logo} size={"50px"}></Icon>
                 <NavbarContainer>
-                    <NavbarItem active="true">Главная</NavbarItem>
-                    <NavbarItem>Доставка</NavbarItem>
-                    <NavbarItem>Контакты</NavbarItem>
-                    <NavbarItem>О нас</NavbarItem>
+                    <NavLink
+                        to={"/"}
+                        className={({ isActive }) =>
+                            isActive ? "link__active" : "link"
+                        }
+                    >
+                        Главная
+                    </NavLink>
+
+                    <NavLink
+                        to={"/delivery"}
+                        className={({ isActive }) =>
+                            isActive ? "link__active" : "link"
+                        }
+                    >
+                        Доставка
+                    </NavLink>
+
+                    <NavLink
+                        to={"/about"}
+                        className={({ isActive }) =>
+                            isActive ? "link__active" : "link"
+                        }
+                    >
+                        О нас
+                    </NavLink>
                 </NavbarContainer>
 
                 <BurgerWrap>

@@ -47,7 +47,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
 
-    padding: 4vw 0 4vw 0;
+    padding: 200px 0 4vw 0;
 `;
 
 const ContainerAboutMe = styled.div`
@@ -62,7 +62,7 @@ const ContainerAboutMe = styled.div`
 const Title = styled.div`
     color: var(--secondary);
     text-align: center;
-    font-size: 44px;
+    font-size: 64px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
@@ -78,7 +78,7 @@ const Quote = styled.div`
     font-weight: 600;
     line-height: normal;
 
-    margin-top: 20px;
+    margin-top: 30px;
 
     @media (max-width: 600px) {
         font-size: 27px;
@@ -93,7 +93,7 @@ const Gallery = styled.div`
 
     grid-template-rows: 3fr 2fr;
     gap: 30px;
-    margin-top: 50px;
+    margin-top: 60px;
 
     @media (max-width: 1200px) {
         gap: 2vw;
@@ -132,7 +132,7 @@ const Сontacts = styled.div`
     align-items: center;
     gap: 10px;
 
-    margin-top: 50px;
+    margin-top: 80px;
 `;
 
 const СontactsIcon = styled.div<{ image: string; size: string }>`

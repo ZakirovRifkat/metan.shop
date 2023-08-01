@@ -13,3 +13,26 @@ body {
     background-repeat: no-repeat;
     font-family: "Montserrat", sans-serif;
 }
+.link {
+    font-size: 30px;
+    color: var(--white);
+    transition: color 0.2s ease-out;
+    text-decoration: none;
+    &:hover {
+        color: var(--secondary);
+    }
+
+    cursor: pointer;
+}
+.link__active {
+    font-size: 30px;
+    color: var(--secondary);
+    transition: color 0.2s ease-out;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--secondary);
+    }
+
+    cursor: pointer;
+}
