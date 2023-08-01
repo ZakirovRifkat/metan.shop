@@ -10,21 +10,27 @@ import "./anim.css";
 
 export const AboutUs = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const images = [pic1, pic2, pic3, pic4];
+
+    const images1 = [pic1, pic2, pic3, pic4];
+    const images2 = [pic2, pic1, pic4, pic3];
+    const images3 = [pic4, pic3, pic2, pic1];
+
     useEffect(() => {
         const timer = setTimeout(() => {
             console.log();
 
-            setCurrentImageIndex((prev) => (prev + 1) % images.length);
+            setCurrentImageIndex((prev) => (prev + 1) % images1.length);
         }, 5000);
         return () => {
             clearTimeout(timer);
         };
-    }, [images]);
+    }, [currentImageIndex]);
 
     console.log(currentImageIndex);
 
-    let currentImage = images[currentImageIndex];
+    let currentImage1 = images1[currentImageIndex];
+    let currentImage2 = images2[currentImageIndex];
+    let currentImage3 = images3[currentImageIndex];
     return (
         <Container>
             <ContainerAboutMe>
@@ -47,14 +53,14 @@ export const AboutUs = () => {
                                         width={"47vw"}
                                         height={"70vw"}
                                         gridArea={"main"}
-                                        image={currentImage}
+                                        image={currentImage1}
                                     />
                                     <GalleryItem
-                                        image={currentImage}
+                                        image={currentImage2}
                                         gridArea={"music"}
                                     />
                                     <GalleryItem
-                                        image={currentImage}
+                                        image={currentImage3}
                                         gridArea={"quote"}
                                     />
                                 </Gallery>
@@ -89,7 +95,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
 
-    padding: 200px 0 4vw 0;
+    padding: 180px 0 4vw 0;
 `;
 const GalleryContainer = styled.div`
     position: absolute;
