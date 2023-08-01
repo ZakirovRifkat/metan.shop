@@ -97,5 +97,6 @@ const Spider = styled.div<{ image?: string }>`
     background-size: cover;
     background-position: center;
     transition: all 0.3s linear;
+    
     cursor: pointer;
 `;
