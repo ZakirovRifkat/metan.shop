@@ -23,7 +23,7 @@ const Container = styled.div`
     background: var(--card);
     box-shadow: 0px 4px 4px 0px #0000003d;
     padding: 20px 20px;
-
+    max-width:310px;
     @media (max-width: 911px) {
         padding: 2.3vw;
         border-radius: 12px;

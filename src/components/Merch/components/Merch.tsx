@@ -34,9 +34,6 @@ export const Merch = () => {
                     <Card />
                     <Card />
                     <Card />
-                    <Card />
-                    <Card />
-                    <Card />
                 </ContainerGrid>
             </ContainerContent>
         </Container>
@@ -65,8 +62,7 @@ const ContainerContent = styled.div`
 const ContainerGrid = styled.div`
     width: 100%;
     display: grid;
-
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     grid-column-gap: 30px;
     grid-row-gap: 40px;
 
