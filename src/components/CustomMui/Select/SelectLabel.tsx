@@ -12,7 +12,7 @@ export const SelectLabel = () => {
         setAge(event.target.value);
     };
     return (
-        <FormControl>
+        <FormControl sx={{ width: "100%" }}>
             <Select
                 value={age}
                 onChange={handleChange}
@@ -20,7 +20,7 @@ export const SelectLabel = () => {
                 inputProps={{ "aria-label": "Without label" }}
                 sx={{
                     borderStyle: "none",
-                    width: "25vw",
+                    width: "100%",
                     height: 42,
                     color: "var(--white)",
                     background: "#3a3a3a",

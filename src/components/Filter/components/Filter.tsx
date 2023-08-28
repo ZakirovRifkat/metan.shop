@@ -18,6 +18,10 @@ export const Filter = () => {
                     <SelectContainer>
                         <SelectLabel></SelectLabel>
                     </SelectContainer>
+
+                    <SelectContainer mobile={"true"}>
+                        <SelectLabel></SelectLabel>
+                    </SelectContainer>
                 </SexContainer>
 
                 <FilterContainer>
@@ -77,6 +81,9 @@ const SexFilter = styled.div`
 
     padding: 10px 0;
     border-radius: 30px;
+    @media screen and (max-width: 530px) {
+        display: none;
+    }
 `;
 
 const SexFilterItem = styled.div`
@@ -91,10 +98,15 @@ const SexContainer = styled.div`
     margin-top: 50px;
     justify-content: space-between;
     align-items: center;
+    gap: 20px;
     @media screen and (max-width: 780px) {
         flex-direction: column;
-        gap: 20px;
         align-items: flex-start;
+    }
+    @media screen and (max-width: 530px) {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
     }
 `;
 const ActiveItem = styled.div<{ left?: string; center?: string }>`
@@ -183,10 +195,16 @@ const CategoryTag = styled.div<{ active?: string }>`
     background-color: ${(props) => (props.active ? "var(--secondary)" : "")};
     cursor: pointer;
 `;
-const SelectContainer = styled.div`
+const SelectContainer = styled.div<{ mobile?: string }>`
     display: none;
+    width: 50%;
+    max-width: 250px;
     @media screen and (max-width: 1040px) {
+        display: ${(props) => (props.mobile ? "flex" : "none")};
+    }
+    @media screen and (max-width: 530px) {
         display: flex;
+        width: 50%;
     }
 `;
 const RangeContainer = styled.div`
