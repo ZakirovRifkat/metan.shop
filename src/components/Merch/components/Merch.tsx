@@ -11,7 +11,7 @@ export const Merch = () => {
             <ContainerContent>
                 <TitleContainer>
                     <Title>Мерч</Title>
-                    <FilterContainer>
+                    <SearchContainer>
                         <Search>
                             <SearchInput
                                 placeholder={"Введите запрос"}
@@ -23,8 +23,14 @@ export const Merch = () => {
                         <TouchedWrap size={"55px"} showed={"true"}>
                             <Icon image={filterIcon} size={"45px"}></Icon>
                         </TouchedWrap>
-                    </FilterContainer>
+                    </SearchContainer>
                 </TitleContainer>
+                <Search mobile={"true"}>
+                    <SearchInput placeholder={"Введите запрос"}></SearchInput>
+                    <TouchedWrap size={"40px"} showed={"true"}>
+                        <Icon image={searchIcon} size={"30px"}></Icon>
+                    </TouchedWrap>
+                </Search>
                 <Filter></Filter>
                 <ContainerGrid>
                     <Card />
@@ -79,10 +85,13 @@ const TitleContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-
+    gap: 20px;
     width: 100%;
 
     padding-right: 45px;
+    @media screen and (max-width:700px){
+        padding-right: 0;
+    }
 `;
 
 const Title = styled.div`
@@ -91,24 +100,31 @@ const Title = styled.div`
     font-weight: 600;
 `;
 
-const FilterContainer = styled.div`
+const SearchContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 32px;
 `;
 
-const Search = styled.div`
-    display: flex;
+const Search = styled.div<{ mobile?: string }>`
+    display: ${(props) => (props.mobile ? "none" : "flex")};
     align-items: center;
     justify-content: space-between;
 
     padding: 0 18px 0 28px;
 
-    width: 450px;
+    max-width: 450px;
+    width: 40vw;
     height: 45px;
     border-radius: 30px;
     background-color: rgba(165, 164, 164, 0.2);
     box-shadow: 0px 4px 4px 0px rgba(28, 28, 28, 0.25);
+    @media screen and (max-width: 700px) {
+        display: ${(props) => (props.mobile ? "flex" : "none")};
+        margin-top: 20px;
+        width: 100%;
+        max-width: none;
+    }
 `;
 
 const SearchInput = styled.input`
