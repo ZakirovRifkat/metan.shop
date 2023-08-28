@@ -1,47 +1,35 @@
 import React from "react";
 import { css, styled } from "styled-components";
-import Slider from "@mui/material/Slider";
+import { SelectLabel } from "../../CustomMui/Select/SelectLabel";
+import { Range } from "../../CustomMui/Range/Range";
 
 export const Filter = () => {
-    const valuetext = (value: number): string => {
-        return `${value}°C`;
-    };
-
     return (
         <Container>
             <ContentContainer>
-                <SexFilter>
-                    <SexFilterItem>Все</SexFilterItem>
-                    <SexFilterItem>Пацанам</SexFilterItem>
-                    <SexFilterItem>Пацанессам</SexFilterItem>
-                    <ActiveItem></ActiveItem>
-                </SexFilter>
+                <SexContainer>
+                    <SexFilter>
+                        <SexFilterItem>Все</SexFilterItem>
+                        <SexFilterItem>Пацанам</SexFilterItem>
+                        <SexFilterItem>Пацанессам</SexFilterItem>
+                        <ActiveItem></ActiveItem>
+                    </SexFilter>
+
+                    <SelectContainer>
+                        <SelectLabel></SelectLabel>
+                    </SelectContainer>
+                </SexContainer>
 
                 <FilterContainer>
                     <PriceContainer>
                         <PriceTitle>Цена</PriceTitle>
-                        <Slider
-                            getAriaLabel={() => "Minimum distance"}
-                            value={[0, 1000]}
-                            // onChange={handleChange1}
-                            valueLabelDisplay="auto"
-                            getAriaValueText={valuetext}
-                            disableSwap
-                            sx={{
-                                margin: "0 12px",
-                                color: "#fff", // set the color to white (#fff)
-                                "& .MuiSlider-thumb": {
-                                    backgroundColor: "#fff", // set the thumb color to white
-                                },
-                                "& .MuiSlider-track": {
-                                    color: "#fff", // set the track color to white
-                                },
-                            }}
-                        />
-                        <InputContainer>
-                            <InputTags placeholder={"от"}></InputTags>
-                            <InputTags placeholder={"до"}></InputTags>
-                        </InputContainer>
+                        <RangeContainer>
+                            <Range></Range>
+                            <InputContainer>
+                                <InputTags placeholder={"от"}></InputTags>
+                                <InputTags placeholder={"до"}></InputTags>
+                            </InputContainer>
+                        </RangeContainer>
                     </PriceContainer>
 
                     <TagsContainer>
@@ -55,11 +43,6 @@ export const Filter = () => {
                         <CategoryTag>Керамбиты</CategoryTag>
                     </TagsContainer>
                 </FilterContainer>
-                <SelectContainer>
-                    <CategoryTag active={"true"}>Худи</CategoryTag>
-                    <CategoryTag active={"true"}>Пацанам</CategoryTag>
-                    <CategoryTag active={"true"}>От 250р до 5000р</CategoryTag>
-                </SelectContainer>
             </ContentContainer>
         </Container>
     );
@@ -78,21 +61,22 @@ const ContentContainer = styled.div`
 const FilterContainer = styled.div`
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
     align-items: flex-end;
     margin-top: 50px;
+    gap: 50px;
 `;
 const SexFilter = styled.div`
     display: flex;
     position: relative;
     width: max-content;
-
+    height: max-content;
     color: var(--white);
     background-color: rgba(165, 164, 164, 0.2);
     box-shadow: 0px 4px 4px 0px rgba(28, 28, 28, 0.25);
 
     padding: 10px 0;
     border-radius: 30px;
-    margin-top: 50px;
 `;
 
 const SexFilterItem = styled.div`
@@ -102,7 +86,17 @@ const SexFilterItem = styled.div`
     z-index: 1;
     cursor: pointer;
 `;
-
+const SexContainer = styled.div`
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-between;
+    align-items: center;
+    @media screen and (max-width: 780px) {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+    }
+`;
 const ActiveItem = styled.div<{ left?: string; center?: string }>`
     position: absolute;
     top: 0;
@@ -120,6 +114,9 @@ const PriceContainer = styled.div`
     flex-direction: column;
 
     gap: 20px;
+    @media screen and (max-width: 1040px) {
+        width: 100%;
+    }
 `;
 
 const PriceTitle = styled.div`
@@ -138,6 +135,13 @@ const tag = css`
 const InputContainer = styled.div`
     display: flex;
     gap: 15px;
+
+    @media screen and (max-width: 1040px) {
+        margin-left: 25px;
+    }
+    @media screen and (max-width: 655px) {
+        margin-left: 0;
+    }
 `;
 
 const InputTags = styled.input`
@@ -146,8 +150,17 @@ const InputTags = styled.input`
     transition: color 0.2s ease-in;
     outline: none;
     width: 130px;
+    height: 40px;
+    padding-left: 20px;
     &:focus {
         color: var(--white);
+    }
+    @media screen and (max-width: 655px) {
+        width: 50%;
+    }
+    @media screen and (max-width: 450px) {
+        height: 30px;
+        font-size: 14px;
     }
 `;
 
@@ -156,8 +169,10 @@ const TagsContainer = styled.div`
     justify-content: flex-end;
     flex-wrap: wrap;
     gap: 20px;
-
-    width: 50%;
+    max-width: 580px;
+    @media screen and (max-width: 1040px) {
+        display: none;
+    }
 `;
 
 const CategoryTag = styled.div<{ active?: string }>`
@@ -169,8 +184,23 @@ const CategoryTag = styled.div<{ active?: string }>`
     cursor: pointer;
 `;
 const SelectContainer = styled.div`
+    display: none;
+    @media screen and (max-width: 1040px) {
+        display: flex;
+    }
+`;
+const RangeContainer = styled.div`
     display: flex;
+    flex-direction: column;
+    gap: 20px;
 
-    margin-top: 50px;
-    gap: 30px;
+    @media screen and (max-width: 1040px) {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+    @media screen and (max-width: 655px) {
+        flex-direction: column;
+        width: 100%;
+    }
 `;
