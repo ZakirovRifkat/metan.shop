@@ -89,8 +89,9 @@ const TitleContainer = styled.div`
     width: 100%;
 
     padding-right: 45px;
-    @media screen and (max-width:700px){
+    @media screen and (max-width: 700px) {
         padding-right: 0;
+        width: var(--container);
     }
 `;
 
@@ -98,6 +99,9 @@ const Title = styled.div`
     color: var(--secondary);
     font-size: 64px;
     font-weight: 600;
+    @media screen and (max-width: 550px) {
+        font-size: 48px;
+    }
 `;
 
 const SearchContainer = styled.div`
@@ -122,7 +126,7 @@ const Search = styled.div<{ mobile?: string }>`
     @media screen and (max-width: 700px) {
         display: ${(props) => (props.mobile ? "flex" : "none")};
         margin-top: 20px;
-        width: 100%;
+        width: 90%;
         max-width: none;
     }
 `;

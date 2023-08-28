@@ -95,7 +95,7 @@ const SexFilterItem = styled.div`
 `;
 const SexContainer = styled.div`
     display: flex;
-    margin-top: 50px;
+    margin-top: 20px;
     justify-content: space-between;
     align-items: center;
     gap: 20px;
