@@ -62,7 +62,7 @@ const ContainerContent = styled.div<{ left?: string }>`
     position: relative;
     width: var(--container);
     height: 100vh;
-
+    max-width: 3000px;
     display: flex;
     justify-content: ${(props) => (props.left ? "start" : "end")};
     align-items: center;
