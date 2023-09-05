@@ -2,8 +2,14 @@ import React from "react";
 import { css, styled } from "styled-components";
 import { SelectLabel } from "../../CustomMui/Select/SelectLabel";
 import { Range } from "../../CustomMui/Range/Range";
-
-export const Filter = () => {
+import { useMerch } from "../../Merch/lib/hook";
+type Props = {
+    minPrice?: number;
+    maxPrice?: number;
+    setMinPrice: (price: number) => void;
+    setMaxPrice: (price: number) => void;
+};
+export const Filter = ({ ...props }: Props) => {
     return (
         <Container>
             <ContentContainer>
@@ -12,15 +18,15 @@ export const Filter = () => {
                         <SexFilterItem>Все</SexFilterItem>
                         <SexFilterItem>Пацанам</SexFilterItem>
                         <SexFilterItem>Пацанессам</SexFilterItem>
-                        <ActiveItem></ActiveItem>
+                        <ActiveItem />
                     </SexFilter>
 
                     <SelectContainer>
-                        <SelectLabel></SelectLabel>
+                        <SelectLabel />
                     </SelectContainer>
 
                     <SelectContainer mobile={"true"}>
-                        <SelectLabel></SelectLabel>
+                        <SelectLabel />
                     </SelectContainer>
                 </SexContainer>
 
@@ -28,10 +34,33 @@ export const Filter = () => {
                     <PriceContainer>
                         <PriceTitle>Цена</PriceTitle>
                         <RangeContainer>
-                            <Range></Range>
+                            <Range
+                                minPrice={props.minPrice ? props.minPrice : 0}
+                                maxPrice={
+                                    props.maxPrice ? props.maxPrice : 10000
+                                }
+                                setMinPrice={props.setMinPrice}
+                                setMaxPrice={props.setMaxPrice}
+                            />
                             <InputContainer>
-                                <InputTags placeholder={"от"}></InputTags>
-                                <InputTags placeholder={"до"}></InputTags>
+                                <InputTags
+                                    placeholder={"от"}
+                                    value={props.minPrice}
+                                    onChange={(e) => {
+                                        props.setMinPrice(
+                                            Number(e.target.value)
+                                        );
+                                    }}
+                                />
+                                <InputTags
+                                    placeholder={"до"}
+                                    value={props.maxPrice}
+                                    onChange={(e) => {
+                                        props.setMaxPrice(
+                                            Number(e.target.value)
+                                        );
+                                    }}
+                                />
                             </InputContainer>
                         </RangeContainer>
                     </PriceContainer>

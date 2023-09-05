@@ -5,11 +5,18 @@ import { Filter } from "../../Filter/components/Filter";
 import filterIcon from "../assets/filterIcon.svg";
 import searchIcon from "../assets/search.svg";
 import { useMerch } from "../lib/hook";
-import { Сontext } from "../lib/context";
 import { observer } from "mobx-react-lite";
 
 export const Merch = observer(() => {
-    const list = useMerch();
+    const store = useMerch();
+    
+    const setMinPrice = (value: number) => {
+        store.setProductParams({ minprice: value });
+    };
+    const setMaxPrice = (value: number) => {
+        store.setProductParams({ maxprice: value });
+    };
+
     return (
         <Container>
             <ContainerContent>
@@ -19,25 +26,44 @@ export const Merch = observer(() => {
                         <Search>
                             <SearchInput
                                 placeholder={"Введите запрос"}
-                            ></SearchInput>
+                                value={store.productParams.name}
+                                onChange={(e) => {
+                                    store.setProductParams({
+                                        name: e.target.value,
+                                    });
+                                }}
+                            />
                             <TouchedWrap size={"40px"} showed={"true"}>
-                                <Icon image={searchIcon} size={"30px"}></Icon>
+                                <Icon image={searchIcon} size={"30px"} />
                             </TouchedWrap>
                         </Search>
                         <TouchedWrap size={"55px"} showed={"true"}>
-                            <Icon image={filterIcon} size={"45px"}></Icon>
+                            <Icon image={filterIcon} size={"45px"} />
                         </TouchedWrap>
                     </SearchContainer>
                 </TitleContainer>
                 <Search mobile={"true"}>
-                    <SearchInput placeholder={"Введите запрос"}></SearchInput>
+                    <SearchInput
+                        placeholder={"Введите запрос"}
+                        value={store.productParams.name}
+                        onChange={(e) => {
+                            store.setProductParams({
+                                name: e.target.value,
+                            });
+                        }}
+                    />
                     <TouchedWrap size={"40px"} showed={"true"}>
-                        <Icon image={searchIcon} size={"30px"}></Icon>
+                        <Icon image={searchIcon} size={"30px"} />
                     </TouchedWrap>
                 </Search>
-                <Filter></Filter>
+                <Filter
+                    minPrice={store.productParams.minprice}
+                    maxPrice={store.productParams.maxprice}
+                    setMinPrice={setMinPrice}
+                    setMaxPrice={setMaxPrice}
+                />
                 <ContainerGrid>
-                    {list.map((elementOfArray, index) => (
+                    {store.productList.map((elementOfArray, index) => (
                         <Card
                             key={index}
                             name={elementOfArray.ItemName}
