@@ -1,7 +1,13 @@
 import React from "react";
 import { styled } from "styled-components";
 
-export const Card = () => {
+type Props = {
+    name: string;
+    price: number;
+    image?: string;
+};
+
+export const Card = ({ ...props }: Props) => {
     return (
         <Container>
             <Image
@@ -11,8 +17,8 @@ export const Card = () => {
                 draggable={false}
             />
             <TextContainer>
-                <Name>Подвеска “Metan”</Name>
-                <Price>1500 p.</Price>
+                <Name>{props.name} </Name>
+                <Price>{props.price} </Price>
             </TextContainer>
         </Container>
     );
@@ -23,7 +29,7 @@ const Container = styled.div`
     background: var(--card);
     box-shadow: 0px 4px 4px 0px #0000003d;
     padding: 20px 20px;
-    max-width:310px;
+    max-width: 310px;
     @media (max-width: 911px) {
         padding: 2.3vw;
         border-radius: 12px;

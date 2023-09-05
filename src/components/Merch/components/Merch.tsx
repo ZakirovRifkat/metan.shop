@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { styled } from "styled-components";
 import { Card } from "../../Card/components/Card";
 import { Filter } from "../../Filter/components/Filter";
 import filterIcon from "../assets/filterIcon.svg";
 import searchIcon from "../assets/search.svg";
+import { useMerch } from "../lib/hook";
+import { Сontext } from "../lib/context";
+import { observer } from "mobx-react-lite";
 
-export const Merch = () => {
+export const Merch = observer(() => {
+    const list = useMerch();
     return (
         <Container>
             <ContainerContent>
@@ -33,18 +37,18 @@ export const Merch = () => {
                 </Search>
                 <Filter></Filter>
                 <ContainerGrid>
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
+                    {list.map((elementOfArray, index) => (
+                        <Card
+                            key={index}
+                            name={elementOfArray.ItemName}
+                            price={elementOfArray.Price}
+                        />
+                    ))}
                 </ContainerGrid>
             </ContainerContent>
         </Container>
     );
-};
+});
 
 const Container = styled.div`
     background: var(--main);
