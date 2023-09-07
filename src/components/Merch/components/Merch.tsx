@@ -11,10 +11,10 @@ export const Merch = observer(() => {
     const store = useMerch();
     
     const setMinPrice = (value: number) => {
-        store.setProductParams({ minprice: value });
+        store.setMinprice(value);
     };
     const setMaxPrice = (value: number) => {
-        store.setProductParams({ maxprice: value });
+        store.setMaxprice(value);
     };
 
     return (
@@ -26,11 +26,9 @@ export const Merch = observer(() => {
                         <Search>
                             <SearchInput
                                 placeholder={"Введите запрос"}
-                                value={store.productParams.name}
+                                value={store.keywords}
                                 onChange={(e) => {
-                                    store.setProductParams({
-                                        name: e.target.value,
-                                    });
+                                    store.setKeywords(e.target.value);
                                 }}
                             />
                             <TouchedWrap size={"40px"} showed={"true"}>
@@ -42,7 +40,7 @@ export const Merch = observer(() => {
                         </TouchedWrap>
                     </SearchContainer>
                 </TitleContainer>
-                <Search mobile={"true"}>
+                {/* <Search mobile={"true"}>
                     <SearchInput
                         placeholder={"Введите запрос"}
                         value={store.productParams.name}
@@ -55,10 +53,10 @@ export const Merch = observer(() => {
                     <TouchedWrap size={"40px"} showed={"true"}>
                         <Icon image={searchIcon} size={"30px"} />
                     </TouchedWrap>
-                </Search>
+                </Search> */}
                 <Filter
-                    minPrice={store.productParams.minprice}
-                    maxPrice={store.productParams.maxprice}
+                    minPrice={store.minprice}
+                    maxPrice={store.maxprice}
                     setMinPrice={setMinPrice}
                     setMaxPrice={setMaxPrice}
                 />

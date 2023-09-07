@@ -2,13 +2,14 @@ import React from "react";
 import { css, styled } from "styled-components";
 import { SelectLabel } from "../../CustomMui/Select/SelectLabel";
 import { Range } from "../../CustomMui/Range/Range";
-import { useMerch } from "../../Merch/lib/hook";
+
 type Props = {
-    minPrice?: number;
-    maxPrice?: number;
+    minPrice: number;
+    maxPrice: number;
     setMinPrice: (price: number) => void;
     setMaxPrice: (price: number) => void;
 };
+
 export const Filter = ({ ...props }: Props) => {
     return (
         <Container>
@@ -35,10 +36,8 @@ export const Filter = ({ ...props }: Props) => {
                         <PriceTitle>Цена</PriceTitle>
                         <RangeContainer>
                             <Range
-                                minPrice={props.minPrice ? props.minPrice : 0}
-                                maxPrice={
-                                    props.maxPrice ? props.maxPrice : 10000
-                                }
+                                minPrice={props.minPrice}
+                                maxPrice={props.maxPrice}
                                 setMinPrice={props.setMinPrice}
                                 setMaxPrice={props.setMaxPrice}
                             />

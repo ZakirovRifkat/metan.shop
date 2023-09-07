@@ -1,46 +1,50 @@
+import React, { useState, useEffect, useContext } from "react";
 import Slider from "@mui/material/Slider";
 import { styled } from "styled-components";
+
 type Props = {
     minPrice: number;
     maxPrice: number;
     setMinPrice: (price: number) => void;
     setMaxPrice: (price: number) => void;
 };
+function valuetext(value: number) {
+    return `${value}р`;
+}
 export const Range = ({ ...props }: Props) => {
-    const valuetext = (value: number): string => {
-        return `${value}р`;
-    };
-    // console.log(props.minPrice);
-    // console.log(props.maxPrice);
+
+
     return (
         <Container>
             <Slider
+                min={0}
+                max={100000}
                 getAriaLabel={() => "Filter Price"}
-                min={props.minPrice}
-                max={10000}
                 value={[props.minPrice, props.maxPrice]}
-                defaultValue={[props.minPrice, 10000]}
-                onChange={(e: any) => {
-                    props.setMinPrice(e.target.value[0]);
-                    props.setMaxPrice(e.target.value[1]);
+                onChange={(e:any)=>{
+                    console.log(e.target.value)
+                    props.setMinPrice(e.target.value[0])
+                    props.setMaxPrice(e.target.value[1])
                 }}
+                defaultValue={[0, 100000]}
                 valueLabelDisplay="auto"
                 getAriaValueText={valuetext}
-                step={100}
+                step={1000}
                 sx={{
                     margin: "0 12px",
-                    color: "#fff", // set the color to white (#fff)
+                    color: "#fff", 
                     "& .MuiSlider-thumb": {
-                        backgroundColor: "#fff", // set the thumb color to white
+                        backgroundColor: "#fff", 
                     },
                     "& .MuiSlider-track": {
-                        color: "#fff", // set the track color to white
+                        color: "#fff", 
                     },
                 }}
-            ></Slider>
+            />
         </Container>
     );
 };
+
 const Container = styled.div`
     @media screen and (max-width: 1040px) {
         width: 40%;
