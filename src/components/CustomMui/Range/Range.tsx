@@ -12,8 +12,6 @@ function valuetext(value: number) {
     return `${value}р`;
 }
 export const Range = ({ ...props }: Props) => {
-
-
     return (
         <Container>
             <Slider
@@ -21,10 +19,9 @@ export const Range = ({ ...props }: Props) => {
                 max={100000}
                 getAriaLabel={() => "Filter Price"}
                 value={[props.minPrice, props.maxPrice]}
-                onChange={(e:any)=>{
-                    console.log(e.target.value)
-                    props.setMinPrice(e.target.value[0])
-                    props.setMaxPrice(e.target.value[1])
+                onChange={(e: any) => {
+                    props.setMinPrice(e.target.value[0]);
+                    props.setMaxPrice(e.target.value[1]);
                 }}
                 defaultValue={[0, 100000]}
                 valueLabelDisplay="auto"
@@ -32,12 +29,12 @@ export const Range = ({ ...props }: Props) => {
                 step={1000}
                 sx={{
                     margin: "0 12px",
-                    color: "#fff", 
+                    color: "#fff",
                     "& .MuiSlider-thumb": {
-                        backgroundColor: "#fff", 
+                        backgroundColor: "#fff",
                     },
                     "& .MuiSlider-track": {
-                        color: "#fff", 
+                        color: "#fff",
                     },
                 }}
             />
