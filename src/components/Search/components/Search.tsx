@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styled-components";
 
 import searchIcon from "../assets/search.svg";
+import { debounce } from "lodash";
 
 type Props = {
     type?: string;
@@ -9,19 +10,32 @@ type Props = {
     setKeywords: (key: string) => void;
 };
 export const SearchInput = ({ ...props }: Props) => {
+    const [keywords, setKeywords] = useState(props.keywords);
+
+    const handle = debounce(() => {
+        props.setKeywords(keywords);
+    }, 600);
+
+    useEffect(() => {
+        handle();
+        return () => {
+            handle.cancel();
+        };
+    }, [keywords]);
+
     return (
-            <Search mobile={props.type}>
-                <Input
-                    placeholder={"Введите запрос"}
-                    value={props.keywords}
-                    onChange={(e) => {
-                       props.setKeywords(e.target.value)
-                    }}
-                />
-                <TouchedWrap size={"40px"} showed={"true"}>
-                    <Icon image={searchIcon} size={"30px"} />
-                </TouchedWrap>
-            </Search>
+        <Search mobile={props.type}>
+            <Input
+                placeholder={"Введите запрос"}
+                value={keywords}
+                onChange={(e) => {
+                    setKeywords(e.target.value);
+                }}
+            />
+            <TouchedWrap size={"40px"} showed={"true"}>
+                <Icon image={searchIcon} size={"30px"} />
+            </TouchedWrap>
+        </Search>
     );
 };
 

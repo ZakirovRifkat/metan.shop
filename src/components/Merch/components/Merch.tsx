@@ -8,6 +8,7 @@ import { observer } from "mobx-react-lite";
 import filterIcon from "../assets/filterIcon.svg";
 import { Types, GenderType } from "../lib/store";
 
+
 export const Merch = observer(() => {
     const store = useMerch();
 
@@ -26,7 +27,6 @@ export const Merch = observer(() => {
     const setGender = (value: GenderType) => {
         store.setGender(value);
     };
-
     return (
         <Container>
             <ContainerContent>

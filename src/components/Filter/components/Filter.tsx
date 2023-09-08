@@ -28,9 +28,7 @@ export const Filter = ({ ...props }: Props) => {
             props.setGender(value);
         }
     };
-    let style: React.CSSProperties = {
-        left: "100%",
-    };
+    let style: React.CSSProperties = {};
 
     if (props.gender == "boy") {
         style = {
