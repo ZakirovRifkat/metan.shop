@@ -10,21 +10,18 @@ type Props = {
 };
 export const SearchInput = ({ ...props }: Props) => {
     return (
-
             <Search mobile={props.type}>
                 <Input
                     placeholder={"Введите запрос"}
                     value={props.keywords}
                     onChange={(e) => {
-                        props.setKeywords(e.target.value);
+                       props.setKeywords(e.target.value)
                     }}
                 />
                 <TouchedWrap size={"40px"} showed={"true"}>
                     <Icon image={searchIcon} size={"30px"} />
                 </TouchedWrap>
             </Search>
-            
-
     );
 };
 

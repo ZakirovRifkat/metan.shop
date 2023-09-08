@@ -7,13 +7,13 @@ export const useMerch = () => {
     const globalStore = useContext(globalContext);
     useEffect(() => {
         globalStore.store.merch
-            .getMerch({ name: localStore.store.productParams.name })
+            .getMerch({})
             .then((responce) => {
                 localStore.store.setProductList(responce.data);
             })
             .catch((e) => {
                 console.log(e);
             });
-    }, [localStore.store.productParams]);
+    }, []);
     return localStore.store;
 };

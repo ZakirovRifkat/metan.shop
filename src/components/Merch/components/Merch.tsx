@@ -6,6 +6,7 @@ import { SearchInput } from "../../Search/components/Search";
 import { useMerch } from "../lib/hook";
 import { observer } from "mobx-react-lite";
 import filterIcon from "../assets/filterIcon.svg";
+import { Types, GenderType } from "../lib/store";
 
 export const Merch = observer(() => {
     const store = useMerch();
@@ -16,6 +17,15 @@ export const Merch = observer(() => {
     const setMaxPrice = (value: number) => {
         store.setMaxprice(value);
     };
+    const setKeywords = (value: string) => {
+        store.setKeywords(value);
+    };
+    const setType = (value: Types) => {
+        store.setType(value);
+    };
+    const setGender = (value: GenderType) => {
+        store.setGender(value);
+    };
 
     return (
         <Container>
@@ -25,7 +35,7 @@ export const Merch = observer(() => {
                     <SearchContainer>
                         <SearchInput
                             keywords={store.keywords}
-                            setKeywords={store.setKeywords}
+                            setKeywords={setKeywords}
                         />
                         <TouchedWrap size={"55px"} showed={"true"}>
                             <Icon image={filterIcon} size={"45px"} />
@@ -35,13 +45,18 @@ export const Merch = observer(() => {
                 <SearchInput
                     type="mobile"
                     keywords={store.keywords}
-                    setKeywords={store.setKeywords}
+                    setKeywords={setKeywords}
                 />
                 <Filter
                     minPrice={store.minprice}
                     maxPrice={store.maxprice}
                     setMinPrice={setMinPrice}
                     setMaxPrice={setMaxPrice}
+                    type={store.type}
+                    arrayType={store.arrayType}
+                    setType={setType}
+                    gender={store.gender}
+                    setGender={setGender}
                 />
                 <ContainerGrid>
                     {store.productList.map((elementOfArray, index) => (

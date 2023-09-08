@@ -2,24 +2,79 @@ import React from "react";
 import { css, styled } from "styled-components";
 import { SelectLabel } from "../../CustomMui/Select/SelectLabel";
 import { Range } from "../../CustomMui/Range/Range";
+import { TagData, Types, GenderType } from "../../Merch/lib/store";
 
 type Props = {
     minPrice: number;
     maxPrice: number;
     setMinPrice: (price: number) => void;
     setMaxPrice: (price: number) => void;
+    arrayType: TagData[];
+    type: Types;
+    setType: (value: Types) => void;
+    gender: GenderType;
+    setGender: (value: GenderType) => void;
 };
 
 export const Filter = ({ ...props }: Props) => {
+    const ChangeType = (value: Types) => {
+        if (value != props.type) {
+            props.setType(value);
+        }
+    };
+    const ChangeGender = (value: GenderType) => {
+        if (value != props.gender) {
+            console.log("1");
+            props.setGender(value);
+        }
+    };
+    let style: React.CSSProperties = {
+        left: "100%",
+    };
+
+    if (props.gender == "boy") {
+        style = {
+            left: "50%",
+            transform: "translate(-50%)",
+        };
+    } else if (props.gender == "girls") {
+        style = {
+            left: "100%",
+            transform: "translate(-100%)",
+        };
+    } else {
+        style = {
+            left: "0",
+        };
+    }
+
     return (
         <Container>
             <ContentContainer>
                 <SexContainer>
                     <SexFilter>
-                        <SexFilterItem>Все</SexFilterItem>
-                        <SexFilterItem>Пацанам</SexFilterItem>
-                        <SexFilterItem>Пацанессам</SexFilterItem>
-                        <ActiveItem />
+                        <SexFilterItem
+                            onClick={() => {
+                                ChangeGender("all");
+                            }}
+                        >
+                            Все
+                        </SexFilterItem>
+                        <SexFilterItem
+                            onClick={() => {
+                                ChangeGender("boy");
+                            }}
+                        >
+                            Пацанам
+                        </SexFilterItem>
+                        <SexFilterItem
+                            onClick={() => {
+                                ChangeGender("girls");
+                            }}
+                        >
+                            Пацанессам
+                        </SexFilterItem>
+                        <ActiveItem style={style} />
                     </SexFilter>
 
                     <SelectContainer>
@@ -65,14 +120,19 @@ export const Filter = ({ ...props }: Props) => {
                     </PriceContainer>
 
                     <TagsContainer>
-                        <CategoryTag>Худи</CategoryTag>
-                        <CategoryTag>Майки</CategoryTag>
-                        <CategoryTag>Футболки</CategoryTag>
-                        <CategoryTag active={"true"}>Толстовки</CategoryTag>
-                        <CategoryTag>Кепки</CategoryTag>
-                        <CategoryTag>Аксессуары</CategoryTag>
-                        <CategoryTag>Балаклавы</CategoryTag>
-                        <CategoryTag>Керамбиты</CategoryTag>
+                        {props.arrayType.map((t, i) => (
+                            <CategoryTag
+                                active={
+                                    t.type == props.type ? "true" : undefined
+                                }
+                                onClick={() => {
+                                    ChangeType(t.type);
+                                }}
+                                key={i}
+                            >
+                                {t.name}
+                            </CategoryTag>
+                        ))}
                     </TagsContainer>
                 </FilterContainer>
             </ContentContainer>
@@ -137,16 +197,19 @@ const SexContainer = styled.div`
         width: 100%;
     }
 `;
-const ActiveItem = styled.div<{ left?: string; center?: string }>`
+const ActiveItem = styled.div`
+    transition: all 0.3s ease;
     position: absolute;
     top: 0;
     border-radius: 30px;
-    left: ${(props) => props.left};
-    transform: translate(${(props) => props.center});
     background-color: var(--secondary);
     min-width: 140px;
     height: 100%;
     z-index: 0;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
 `;
 
 const PriceContainer = styled.div`
@@ -170,6 +233,10 @@ const tag = css`
     border-radius: 30px;
     color: var(--white);
     padding: 5px 10px;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
 `;
 
 const InputContainer = styled.div`
