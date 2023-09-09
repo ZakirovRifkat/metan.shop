@@ -42,6 +42,15 @@ export const Filter = ({ ...props }: Props) => {
         };
     }, [minPrice, maxPrice]);
 
+    useEffect(()=>{
+        if (minPrice !== props.minPrice) {
+            setMinPrice(props.minPrice)
+        }
+        if(maxPrice !== props.maxPrice){
+            setMaxPrice(props.maxPrice)
+        }
+    }, [props.maxPrice, props.minPrice])
+
     const ChangeType = (value: Types) => {
         if (value != props.type) {
             props.setType(value);

@@ -10,7 +10,7 @@ export type GenderType = "all"|"boy"|"girls";
 
 export class Store {
     private _productList: Product[] = [];
-    private _type: Types = "T-shirts";
+    private _type: Types = "Hoodie";
     private _keywords: string = "";
     private _minprice: number = 0;
     private _maxprice: number = 100000;

@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 import { Card } from "../../Card/components/Card";
 import { Filter } from "../../Filter/components/Filter";
 import { SearchInput } from "../../Search/components/Search";
-import { useMerch } from "../lib/hook";
+import { useMerch, useSearchParamSync } from "../lib/hook";
 import { observer } from "mobx-react-lite";
 import filterIcon from "../assets/filterIcon.svg";
 import { Types, GenderType } from "../lib/store";
@@ -11,6 +11,7 @@ import { Types, GenderType } from "../lib/store";
 
 export const Merch = observer(() => {
     const store = useMerch();
+    useSearchParamSync();
 
     const setMinPrice = (value: number) => {
         store.setMinprice(value);

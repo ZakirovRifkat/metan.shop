@@ -17,11 +17,21 @@ export const SearchInput = ({ ...props }: Props) => {
     }, 600);
 
     useEffect(() => {
-        handle();
+        if(keywords!=props.keywords){
+            handle();
+        }
         return () => {
             handle.cancel();
         };
     }, [keywords]);
+
+    useEffect(()=>{
+        if(keywords!=props.keywords){
+            setKeywords(props.keywords)
+        }
+    },[props.keywords])
+
+
 
     return (
         <Search mobile={props.type}>
