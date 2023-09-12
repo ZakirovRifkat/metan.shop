@@ -10,7 +10,7 @@ export const Header = () => {
                 <Icon image={logo} size={"50px"}></Icon>
                 <NavbarContainer>
                     <NavLink
-                        to={"/"}
+                        to={"/main"}
                         className={({ isActive }) =>
                             isActive ? "link__active" : "link"
                         }
