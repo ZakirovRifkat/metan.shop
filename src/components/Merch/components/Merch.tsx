@@ -8,7 +8,6 @@ import { observer } from "mobx-react-lite";
 import filterIcon from "../assets/filterIcon.svg";
 import { Types, GenderType } from "../lib/store";
 
-
 export const Merch = observer(() => {
     const store = useMerch();
     useSearchParamSync();
@@ -62,6 +61,7 @@ export const Merch = observer(() => {
                 <ContainerGrid>
                     {store.productList.map((elementOfArray, index) => (
                         <Card
+                            id={elementOfArray.Id}
                             key={index}
                             name={elementOfArray.ItemName}
                             price={elementOfArray.Price}

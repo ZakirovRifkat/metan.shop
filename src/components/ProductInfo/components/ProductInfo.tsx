@@ -1,45 +1,111 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { css, styled } from "styled-components";
+import { useProduct } from "../lib/hook";
+import { observer } from "mobx-react-lite";
 
-export const ProductInfo = () => {
+export const ProductInfo = observer(() => {
+    const url = useLocation();
+    const navigate = useNavigate();
+    const id = url.pathname.split("/")[3];
+
+    const store = useProduct(id);
+
+    useEffect(() => {
+        document.body.style.overflow = "hidden";
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    });
+
     return (
         <Container>
-            <ImageContainer>
-                <Image type={"main"}></Image>
-                <Image type={"second"}></Image>
-                <Image type={"second"}></Image>
-                <Image type={"second"}></Image>
-                <Image type={"second"}></Image>
-            </ImageContainer>
-            <InfoContainer>
-                <ProductTitle textstyle={"600"} textsize={"26px"}>
-                    Наименование товара
-                </ProductTitle>
-                <ProductTitle textsize={"22px"}>Цена: 1500 р.</ProductTitle>
-                <BtnContainer>
-                    <SizeBtn>XS</SizeBtn>
-                    <SizeBtn>S</SizeBtn>
-                    <SizeBtn active="true">M</SizeBtn>
-                    <SizeBtn>L</SizeBtn>
-                    <SizeBtn>XL</SizeBtn>
-                </BtnContainer>
-                <BtnContainer>
-                    <Button>КУПИТЬ</Button>
-                    <Button>В КОРЗИНУ</Button>
-                </BtnContainer>
-            </InfoContainer>
+            <Link
+                onClick={() => {
+                    navigate("/main");
+                }}
+            >
+                <Cross>
+                    <Horizontal angle={"45"}></Horizontal>
+                    <Horizontal angle={"-45"}></Horizontal>
+                </Cross>
+            </Link>
+            <ContentContainer>
+                <ImageContainer>
+                    <Image type={"main"}></Image>
+                    <Image type={"second"}></Image>
+                    <Image type={"second"}></Image>
+                    <Image type={"second"}></Image>
+                    <Image type={"second"}></Image>
+                </ImageContainer>
+                <InfoContainer>
+                    <ProductTitle textstyle={"600"} textsize={"26px"}>
+                        {store.product?.ItemName}
+                    </ProductTitle>
+                    <ProductTitle textsize={"22px"}>
+                        Цена: {store.product?.Price}
+                    </ProductTitle>
+                    <BtnContainer>
+                        <SizeBtn>XS</SizeBtn>
+                        <SizeBtn>S</SizeBtn>
+                        <SizeBtn active="true">M</SizeBtn>
+                        <SizeBtn>L</SizeBtn>
+                        <SizeBtn>XL</SizeBtn>
+                    </BtnContainer>
+                    <BtnContainer>
+                        <Button>КУПИТЬ</Button>
+                        <Button>В КОРЗИНУ</Button>
+                    </BtnContainer>
+                </InfoContainer>
+            </ContentContainer>
         </Container>
     );
-};
+});
 
+const Cross = styled.div`
+    position: relative;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+`;
+
+const Span = css`
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    background-color: #ffffff;
+`;
+
+const Horizontal = styled.span<{ angle: string }>`
+    ${Span}
+    transform: rotate(${(props) => props.angle}deg);
+`;
+
+const Link = styled.div`
+    position: fixed;
+    top: 40px;
+    right: 50px;
+    color: white;
+    user-select: none;
+`;
 const Container = styled.div`
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0000009e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+`;
+const ContentContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 
-    max-width: 920px;
-    max-height: 1150px;
+    max-width: 560px;
+    max-height: 740px;
 
     width: 36vw;
     height: 48vw;

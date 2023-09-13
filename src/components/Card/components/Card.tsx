@@ -1,7 +1,9 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { styled } from "styled-components";
 
 type Props = {
+    id: string;
     name: string;
     price: number;
     image?: string;
@@ -10,13 +12,15 @@ type Props = {
 export const Card = ({ ...props }: Props) => {
     return (
         <Container>
-            <Image
-                image={
-                    "https://thetaste.ru/image/cache/catalog/foto_product/0000_Brands/TASTE/3165/31651-1500x1500.jpg"
-                }
-                draggable={false}
-            />
             <TextContainer>
+                <NavLink to={`/main/item/${props.id}`}>
+                    <Image
+                        image={
+                            "https://thetaste.ru/image/cache/catalog/foto_product/0000_Brands/TASTE/3165/31651-1500x1500.jpg"
+                        }
+                        draggable={false}
+                    />
+                </NavLink>
                 <Name>{props.name} </Name>
                 <Price>{props.price} </Price>
             </TextContainer>

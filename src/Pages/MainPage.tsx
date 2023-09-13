@@ -5,12 +5,13 @@ import styled from "styled-components";
 import { Link, Route, Routes } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { RouteMatch } from "react-router-dom";
+import { ProductInfo } from "../components/ProductInfo/components/ProductInfo";
 
 export const MainPage = () => {
     return (
         <Container>
             <Routes>
-                <Route path="/item" element={<Test></Test>} />
+                <Route path="/item/*" element={<ProductInfo></ProductInfo>} />
             </Routes>
             <MainBannerAnimation />
             <Merch />
@@ -21,12 +22,4 @@ export const MainPage = () => {
 const Container = styled.div`
     width: 100%;
 `;
-const Test = styled.div`
-    position: absolute;
-    left: 0;
-    right: 0;
-    background-color: #a30f0f31;
-    height: 100%;
-    width: 100%;
-    z-index: 100;
-`;
+
