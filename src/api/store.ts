@@ -6,6 +6,7 @@ class Merch {
         makeAutoObservable(this);
     }
     public readonly getMerch = MerchServices.getMerch;
+    public readonly getProduct = MerchServices.getProduct;
 }
 
 export class Store {

@@ -12,8 +12,20 @@ export class Merch {
         maxprice,
         minprice,
     }: types.ProductParams): Promise<AxiosResponse<types.Product[]>> {
-        return await $metanShop_api.get<types.Product[]>(urls.Client.getMerch(), {
-            params: { type, size, name, price, maxprice, minprice },
-        });
+        return await $metanShop_api.get<types.Product[]>(
+            urls.Client.getMerch(),
+            {
+                params: { type, size, name, price, maxprice, minprice },
+            }
+        );
+    }
+    static async getProduct({
+        id,
+    }: {
+        id: string;
+    }): Promise<AxiosResponse<types.Product>> {
+        return await $metanShop_api.get<types.Product>(
+            urls.Client.getProduct(id)
+        );
     }
 }
