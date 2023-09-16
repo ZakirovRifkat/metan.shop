@@ -86,6 +86,7 @@ export const Merch = observer(() => {
                             key={index}
                             name={elementOfArray.ItemName}
                             price={elementOfArray.Price}
+                            image={elementOfArray.Picture}
                         />
                     ))}
                 </ContainerGrid>

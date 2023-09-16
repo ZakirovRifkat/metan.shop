@@ -66,7 +66,7 @@ export const ProductInfo = observer(() => {
                 variants={pageVariants}
             >
                 <ImageContainer>
-                    <Image type={"main"}></Image>
+                    <Image type={"main"} image={store.product?.Picture}></Image>
                     <Image type={"second"}></Image>
                     <Image type={"second"}></Image>
                     <Image type={"second"}></Image>
@@ -167,6 +167,9 @@ const Image = styled.div<{ type: string; image?: string }>`
     grid-column: ${(props) => (props.type === "main" ? "1fr" : "2 / 3")};
     grid-row: ${(props) => (props.type === "main" ? "1 / 6" : "1fr")};
     background-image: url(${(props) => props.image});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     border-radius: 20px;
 `;
 
