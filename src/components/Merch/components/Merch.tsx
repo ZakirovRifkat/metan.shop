@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { styled } from "styled-components";
 import { Card } from "../../Card/components/Card";
 import { Filter } from "../../Filter/components/Filter";
@@ -7,10 +7,13 @@ import { useMerch, useSearchParamSync } from "../lib/hook";
 import { observer } from "mobx-react-lite";
 import filterIcon from "../assets/filterIcon.svg";
 import { Types, GenderType } from "../lib/store";
+import { motion, AnimatePresence } from "framer-motion";
+import { NavLink } from "react-router-dom";
 
 export const Merch = observer(() => {
     const store = useMerch();
     useSearchParamSync();
+    const [filter, setFilter] = useState(false);
 
     const setMinPrice = (value: number) => {
         store.setMinprice(value);
@@ -38,7 +41,13 @@ export const Merch = observer(() => {
                             setKeywords={setKeywords}
                         />
                         <TouchedWrap size={"55px"} showed={"true"}>
-                            <Icon image={filterIcon} size={"45px"} />
+                            <Icon
+                                image={filterIcon}
+                                size={"45px"}
+                                onClick={() => {
+                                    setFilter(!filter);
+                                }}
+                            />
                         </TouchedWrap>
                     </SearchContainer>
                 </TitleContainer>
@@ -47,17 +56,29 @@ export const Merch = observer(() => {
                     keywords={store.keywords}
                     setKeywords={setKeywords}
                 />
-                <Filter
-                    minPrice={store.minprice}
-                    maxPrice={store.maxprice}
-                    setMinPrice={setMinPrice}
-                    setMaxPrice={setMaxPrice}
-                    type={store.type}
-                    arrayType={store.arrayType}
-                    setType={setType}
-                    gender={store.gender}
-                    setGender={setGender}
-                />
+                <AnimatePresence>
+                    {filter && (
+                        <motion.div
+                            style={{ width: "100%" }}
+                            layout
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                        >
+                            <Filter
+                                minPrice={store.minprice}
+                                maxPrice={store.maxprice}
+                                setMinPrice={setMinPrice}
+                                setMaxPrice={setMaxPrice}
+                                type={store.type}
+                                arrayType={store.arrayType}
+                                setType={setType}
+                                gender={store.gender}
+                                setGender={setGender}
+                            />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
                 <ContainerGrid>
                     {store.productList.map((elementOfArray, index) => (
                         <Card

@@ -3,6 +3,18 @@ import { styled } from "styled-components";
 import image1 from "../assets/image1.jpg";
 import image2 from "../assets/image2.jpg";
 import image3 from "../assets/image3.jpg";
+import { motion } from "framer-motion";
+
+const Variants = {
+    initial: (custom: number) => ({
+        opacity: 0,
+        y: custom,
+    }),
+    enter: {
+        opacity: 1,
+        y: 0,
+    },
+};
 
 export const Banner1 = () => {
     return (
@@ -10,10 +22,32 @@ export const Banner1 = () => {
             <Blackout />
             <ContainerContent>
                 <Content>
-                    <Title>Metan.Shop</Title>
-                    <Quote>С железом в крови и рифмой в сердце</Quote>
+                    <Title
+                        variants={Variants}
+                        custom={-50}
+                        initial={"initial"}
+                        animate={"enter"}
+                        transition={{ type: "spring", delay: 0.4 }}
+                    >
+                        Metan.Shop
+                    </Title>
+                    <Quote
+                        variants={Variants}
+                        custom={-20}
+                        initial={"initial"}
+                        animate={"enter"}
+                        transition={{ delay: 1 }}
+                    >
+                        С железом в крови и рифмой в сердце
+                    </Quote>
                 </Content>
-                <Button>ПОДРОБНЕЕ</Button>
+                <Button
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ ease:"anticipate", duration:0.5, delay: 1.5 }}
+                >
+                    ПОДРОБНЕЕ
+                </Button>
             </ContainerContent>
         </Container>
     );
@@ -77,7 +111,7 @@ const Blackout = styled.div`
     z-index: 1;
 `;
 
-const Button = styled.div<{
+const Button = styled(motion.div)<{
     left?: string;
     center?: string;
 }>`
@@ -116,14 +150,14 @@ const Button = styled.div<{
     cursor: pointer;
 `;
 
-const Title = styled.div`
+const Title = styled(motion.div)`
     color: var(--secondary);
     font-size: 96px;
     font-weight: 600;
 
     width: max-content;
 `;
-const Quote = styled.div<{ left?: string }>`
+const Quote = styled(motion.div)<{ left?: string }>`
     color: var(--white);
     text-align: ${(props) => (props.left ? "left" : "right")};
     font-size: 60px;

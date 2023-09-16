@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { css, styled } from "styled-components";
 import { useProduct } from "../lib/hook";
 import { observer } from "mobx-react-lite";
+import { motion } from "framer-motion";
 
 export const ProductInfo = observer(() => {
     const url = useLocation();
@@ -18,8 +19,36 @@ export const ProductInfo = observer(() => {
         };
     });
 
+    const pageVariants = {
+        initial: {
+            opacity: 0,
+            scale: 0,
+        },
+        enter: {
+            opacity: 1,
+            scale: 1,
+            transition: {
+                duration: 0.5,
+                ease: "easeInOut",
+            },
+        },
+        exit: {
+            opacity: 0,
+            scale: 0,
+            transition: {
+                duration: 0.2,
+                ease: "easeInOut",
+            },
+        },
+    };
+
     return (
-        <Container>
+        <Container
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+        >
             <Link
                 onClick={() => {
                     navigate("/main");
@@ -30,7 +59,12 @@ export const ProductInfo = observer(() => {
                     <Horizontal angle={"-45"}></Horizontal>
                 </Cross>
             </Link>
-            <ContentContainer>
+            <ContentContainer
+                initial="initial"
+                animate="enter"
+                exit="exit"
+                variants={pageVariants}
+            >
                 <ImageContainer>
                     <Image type={"main"}></Image>
                     <Image type={"second"}></Image>
@@ -88,7 +122,7 @@ const Link = styled.div`
     color: white;
     user-select: none;
 `;
-const Container = styled.div`
+const Container = styled(motion.div)`
     position: fixed;
     width: 100vw;
     height: 100vh;
@@ -97,8 +131,10 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     z-index: 10;
+    padding: 2vw 0;
+    overflow: scroll;
 `;
-const ContentContainer = styled.div`
+const ContentContainer = styled(motion.div)`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
