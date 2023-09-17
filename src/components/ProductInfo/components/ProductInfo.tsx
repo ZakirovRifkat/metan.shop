@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Image } from "./Image";
 import { css, styled } from "styled-components";
 import { useProduct } from "../lib/hook";
 import { observer } from "mobx-react-lite";
 import { motion } from "framer-motion";
+import { ImageContainer } from "./ImageContainer";
 
 export const ProductInfo = observer(() => {
     const url = useLocation();
@@ -42,12 +44,27 @@ export const ProductInfo = observer(() => {
         },
     };
 
+    const test = [
+        "https://img3.akspic.ru/previews/6/4/2/8/6/168246/168246-skazhi_igru-lyudo_king-kosti-igra_v_kosti-azartnaya_igra-500x.jpg",
+        "https://kartinkof.club/uploads/posts/2022-12/1670401826_kartinkof-club-p-kartinki-neobichnie-so-smislom-1.jpg",
+        "https://kartinkof.club/uploads/posts/2022-12/1670401826_kartinkof-club-p-kartinki-neobichnie-so-smislom-1.jpg",
+        "https://kartinkof.club/uploads/posts/2022-12/1670401826_kartinkof-club-p-kartinki-neobichnie-so-smislom-1.jpg",
+        "https://kartinkof.club/uploads/posts/2022-12/1670401826_kartinkof-club-p-kartinki-neobichnie-so-smislom-1.jpg",
+        "https://kartinkof.club/uploads/posts/2022-12/1670401826_kartinkof-club-p-kartinki-neobichnie-so-smislom-1.jpg",
+        "https://kartinkof.club/uploads/posts/2022-12/1670401826_kartinkof-club-p-kartinki-neobichnie-so-smislom-1.jpg",
+        "https://kartinkof.club/uploads/posts/2022-12/1670401826_kartinkof-club-p-kartinki-neobichnie-so-smislom-1.jpg",
+        "https://kartinkof.club/uploads/posts/2022-12/1670401826_kartinkof-club-p-kartinki-neobichnie-so-smislom-1.jpg",
+    ];
+
     return (
         <Container
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
+            onClick={() => {
+                navigate("/main");
+            }}
         >
             <Link
                 onClick={() => {
@@ -64,14 +81,19 @@ export const ProductInfo = observer(() => {
                 animate="enter"
                 exit="exit"
                 variants={pageVariants}
+                onClick={(e) => {
+                    e.stopPropagation();
+                }}
             >
-                <ImageContainer>
-                    <Image type={"main"} image={store.product?.Picture}></Image>
-                    <Image type={"second"}></Image>
-                    <Image type={"second"}></Image>
-                    <Image type={"second"}></Image>
-                    <Image type={"second"}></Image>
-                </ImageContainer>
+                {/* <ImageContainer1>
+                    <Image type={'main'} delay={0.5} />
+                    <Image type={'second'} delay={0.7} />
+                    <Image type={'second'} delay={0.9} />
+                    <Image type={'second'} delay={1.1} />
+                    <Image type={'second'} delay={1.3} />
+                    <Image type={'second'} delay={1.5} />
+                </ImageContainer1> */}
+                <ImageContainer data={test} />
                 <InfoContainer>
                     <ProductTitle textstyle={"600"} textsize={"26px"}>
                         {store.product?.ItemName}
@@ -87,8 +109,18 @@ export const ProductInfo = observer(() => {
                         <SizeBtn>XL</SizeBtn>
                     </BtnContainer>
                     <BtnContainer>
-                        <Button>КУПИТЬ</Button>
-                        <Button>В КОРЗИНУ</Button>
+                        <Button
+                            whileTap={{ scale: 0.8 }}
+                            transition={{ duration: 0.01 }}
+                        >
+                            КУПИТЬ
+                        </Button>
+                        <Button
+                            whileTap={{ scale: 0.8 }}
+                            transition={{ duration: 0.01 }}
+                        >
+                            В КОРЗИНУ
+                        </Button>
                     </BtnContainer>
                 </InfoContainer>
             </ContentContainer>
@@ -152,7 +184,7 @@ const ContentContainer = styled(motion.div)`
     background-color: #383838;
 `;
 
-const ImageContainer = styled.div`
+const ImageContainer1 = styled.div`
     width: 100%;
     height: 76%;
 
@@ -161,16 +193,6 @@ const ImageContainer = styled.div`
     grid-template-rows: repeat(5, 1fr);
     grid-row-gap: 12px;
     grid-column-gap: 12px;
-`;
-const Image = styled.div<{ type: string; image?: string }>`
-    background-color: #d9d9d9;
-    grid-column: ${(props) => (props.type === "main" ? "1fr" : "2 / 3")};
-    grid-row: ${(props) => (props.type === "main" ? "1 / 6" : "1fr")};
-    background-image: url(${(props) => props.image});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 20px;
 `;
 
 const InfoContainer = styled.div`
@@ -196,10 +218,14 @@ const BtnContainer = styled.div`
     gap: 15px;
 `;
 
-const SizeBtn = styled.div<{ active?: string }>`
+const SizeBtn = styled(motion.div)<{ active?: string }>`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
 
     width: 55px;
     height: 55px;
@@ -218,11 +244,15 @@ const SizeBtn = styled.div<{ active?: string }>`
     }
 `;
 
-const Button = styled.div`
+const Button = styled(motion.div)`
     display: flex;
     justify-content: center;
     align-items: center;
     width: 200px;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
 
     background-color: transparent;
 

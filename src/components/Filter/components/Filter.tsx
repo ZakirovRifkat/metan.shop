@@ -11,8 +11,8 @@ type Props = {
     setMinPrice: (price: number) => void;
     setMaxPrice: (price: number) => void;
     arrayType: TagData[];
-    type: Types;
-    setType: (value: Types) => void;
+    type: Types[];
+    setType: (value: Types[]) => void;
     gender: GenderType;
     setGender: (value: GenderType) => void;
 };
@@ -42,20 +42,26 @@ export const Filter = ({ ...props }: Props) => {
         };
     }, [minPrice, maxPrice]);
 
-    useEffect(()=>{
+    // useEffect(()=>{
+    //     console.log('1')
+    // },[props.type])
+    useEffect(() => {
         if (minPrice !== props.minPrice) {
-            setMinPrice(props.minPrice)
+            setMinPrice(props.minPrice);
         }
-        if(maxPrice !== props.maxPrice){
-            setMaxPrice(props.maxPrice)
+        if (maxPrice !== props.maxPrice) {
+            setMaxPrice(props.maxPrice);
         }
-    }, [props.maxPrice, props.minPrice])
+    }, [props.maxPrice, props.minPrice]);
 
     const ChangeType = (value: Types) => {
-        if (value != props.type) {
-            props.setType(value);
+        if (!props.type.includes(value)) {
+            props.setType([...props.type, value]);
+        } else {
+            props.setType(props.type.filter((item) => item !== value));
         }
     };
+    
     const ChangeGender = (value: GenderType) => {
         if (value != props.gender) {
             console.log("1");
@@ -151,7 +157,9 @@ export const Filter = ({ ...props }: Props) => {
                         {props.arrayType.map((t, i) => (
                             <CategoryTag
                                 active={
-                                    t.type == props.type ? "true" : undefined
+                                    props.type.includes(t.type)
+                                        ? "true"
+                                        : undefined
                                 }
                                 onClick={() => {
                                     ChangeType(t.type);

@@ -10,7 +10,7 @@ export type GenderType = "all"|"boy"|"girls";
 
 export class Store {
     private _productList: Product[] = [];
-    private _type: Types = "Hoodie";
+    private _type: Types[] = [];
     private _keywords: string = "";
     private _minprice: number = 0;
     private _maxprice: number = 100000;
@@ -32,7 +32,7 @@ export class Store {
     public get productList(): Product[] {
         return this._productList;
     }
-    public get type(): Types {
+    public get type(): Types[]{
         return this._type;
     }
     public get keywords(): string {
@@ -55,7 +55,7 @@ export class Store {
     public setProductList(productList: Product[]): void {
         this._productList = productList;
     }
-    public setType(value: Types): void {
+    public setType(value: Types[]): void {
         this._type = value;
     }
     public setKeywords(value: string): void {

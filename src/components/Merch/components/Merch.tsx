@@ -24,7 +24,7 @@ export const Merch = observer(() => {
     const setKeywords = (value: string) => {
         store.setKeywords(value);
     };
-    const setType = (value: Types) => {
+    const setType = (value: Types[]) => {
         store.setType(value);
     };
     const setGender = (value: GenderType) => {
@@ -86,7 +86,6 @@ export const Merch = observer(() => {
                             key={index}
                             name={elementOfArray.ItemName}
                             price={elementOfArray.Price}
-                            image={elementOfArray.Picture}
                         />
                     ))}
                 </ContainerGrid>
