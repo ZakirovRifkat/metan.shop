@@ -45,7 +45,7 @@ export const ProductInfo = observer(() => {
     };
 
     const test = [
-        "https://img3.akspic.ru/previews/6/4/2/8/6/168246/168246-skazhi_igru-lyudo_king-kosti-igra_v_kosti-azartnaya_igra-500x.jpg",
+        "https://img01.flagma.uz/photo/futbolka-chyornaya-odnotonnaya-1851744_big.jpg",
         "https://kartinkof.club/uploads/posts/2022-12/1670401826_kartinkof-club-p-kartinki-neobichnie-so-smislom-1.jpg",
         "https://kartinkof.club/uploads/posts/2022-12/1670401826_kartinkof-club-p-kartinki-neobichnie-so-smislom-1.jpg",
         "https://kartinkof.club/uploads/posts/2022-12/1670401826_kartinkof-club-p-kartinki-neobichnie-so-smislom-1.jpg",
@@ -85,14 +85,6 @@ export const ProductInfo = observer(() => {
                     e.stopPropagation();
                 }}
             >
-                {/* <ImageContainer1>
-                    <Image type={'main'} delay={0.5} />
-                    <Image type={'second'} delay={0.7} />
-                    <Image type={'second'} delay={0.9} />
-                    <Image type={'second'} delay={1.1} />
-                    <Image type={'second'} delay={1.3} />
-                    <Image type={'second'} delay={1.5} />
-                </ImageContainer1> */}
                 <ImageContainer data={test} />
                 <InfoContainer>
                     <ProductTitle textstyle={"600"} textsize={"26px"}>
@@ -101,13 +93,13 @@ export const ProductInfo = observer(() => {
                     <ProductTitle textsize={"22px"}>
                         Цена: {store.product?.Price}
                     </ProductTitle>
-                    <BtnContainer>
+                    <SizeContainer>
                         <SizeBtn>XS</SizeBtn>
                         <SizeBtn>S</SizeBtn>
                         <SizeBtn active="true">M</SizeBtn>
                         <SizeBtn>L</SizeBtn>
                         <SizeBtn>XL</SizeBtn>
-                    </BtnContainer>
+                    </SizeContainer>
                     <BtnContainer>
                         <Button
                             whileTap={{ scale: 0.8 }}
@@ -149,10 +141,15 @@ const Horizontal = styled.span<{ angle: string }>`
 
 const Link = styled.div`
     position: fixed;
-    top: 40px;
-    right: 50px;
+    top: 15px;
+    right: 15px;
     color: white;
     user-select: none;
+
+    @media (max-width: 600px) {
+        top: 2vw;
+        right: 2vw;
+    }
 `;
 const Container = styled(motion.div)`
     position: fixed;
@@ -163,8 +160,11 @@ const Container = styled(motion.div)`
     justify-content: center;
     align-items: center;
     z-index: 10;
+    overflow-x: scroll;
     padding: 2vw 0;
-    overflow: scroll;
+    @media (max-width: 600px) {
+        padding:0;
+    }
 `;
 const ContentContainer = styled(motion.div)`
     display: flex;
@@ -174,35 +174,38 @@ const ContentContainer = styled(motion.div)`
 
     max-width: 560px;
     max-height: 740px;
-
-    width: 36vw;
-    height: 48vw;
+    min-height: 740px;
+    width: 100%;
+    height: calc(100vh - 4vw);
 
     border-radius: 20px;
     margin: auto auto;
-    padding: 50px 80px;
+    padding: 45px 55px;
     background-color: #383838;
-`;
 
-const ImageContainer1 = styled.div`
-    width: 100%;
-    height: 76%;
-
-    display: grid;
-    grid-template-columns: 80% 1fr;
-    grid-template-rows: repeat(5, 1fr);
-    grid-row-gap: 12px;
-    grid-column-gap: 12px;
+    @media (max-width: 600px) {
+        max-height: 100vh;
+        max-width: 100vw;
+        height: 100vh;
+        width: 100vw;
+        border-radius: 0px;
+        padding: 7vw 9vw;
+    }
+    @media (max-width:480px) {
+        justify-content: center;   
+    }
 `;
 
 const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: flex-start;
 
     width: 100%;
-    margin-top: 30px;
-    gap: 15px;
+    height: 30%;
+    min-height: max-content;
+    gap: 10px;
 `;
 
 const ProductTitle = styled.div<{ textstyle?: string; textsize: string }>`
@@ -212,23 +215,32 @@ const ProductTitle = styled.div<{ textstyle?: string; textsize: string }>`
     text-align: start;
 `;
 
-const BtnContainer = styled.div`
+const SizeContainer = styled.div`
+    width: 100%;
     display: flex;
-    margin-top: 10px;
-    gap: 15px;
+    gap: 10px;
+    min-height: 55px;
+    overflow-y: scroll;
+`;
+
+const BtnContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
 `;
 
 const SizeBtn = styled(motion.div)<{ active?: string }>`
     display: flex;
     justify-content: center;
     align-items: center;
-
     -moz-user-select: none;
     -khtml-user-select: none;
     user-select: none;
 
-    width: 55px;
-    height: 55px;
+    min-width: 55px;
+    min-height: 55px;
 
     background-color: ${(props) =>
         props.active ? "var(--secondary)" : "rgba(255, 255, 255, 0.20)"};
@@ -268,5 +280,8 @@ const Button = styled(motion.div)`
     &:hover {
         background-color: var(--secondary);
         border-color: var(--secondary);
+    }
+    @media (max-width: 435px) {
+        font-size: 18px;
     }
 `;

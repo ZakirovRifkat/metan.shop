@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import logo from "../assets/logo.svg";
 import basket from "../assets/basket.svg";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { Burger } from "./Burger";
+import { AnimatePresence } from "framer-motion";
 export const Header = () => {
+    const [burger, setBurger] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const isScrolled = window.scrollY > 40;
+            setScrolled(isScrolled);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     return (
-        <Container>
+        <Container active={scrolled ? "active" : undefined}>
             <ContentContainer>
                 <Icon image={logo} size={"50px"}></Icon>
                 <NavbarContainer>
@@ -41,15 +59,21 @@ export const Header = () => {
                     <TouchedWrap size={"55px"} showed="true">
                         <Icon image={basket} size={"40px"}></Icon>
                     </TouchedWrap>
-                    <TouchedWrap size={"55px"}>
-                        <BurgerIcon>
-                            <BurgerSpan position={"0%"}></BurgerSpan>
-                            <BurgerSpan position={"50%"}></BurgerSpan>
-                            <BurgerSpan position={"100%"}></BurgerSpan>
-                        </BurgerIcon>
+                    <TouchedWrap
+                        onClick={() => {
+                            setBurger(!burger);
+                        }}
+                        size={"55px"}
+                    >
+                        <IconBurger active={burger ? "active" : undefined} />
                     </TouchedWrap>
                 </BurgerWrap>
             </ContentContainer>
+            <AnimatePresence>
+                {burger ? (
+                    <Burger burger={burger} setBurger={setBurger} />
+                ) : null}
+            </AnimatePresence>
         </Container>
     );
 };
@@ -64,6 +88,7 @@ const Container = styled.div<{ active?: string }>`
     z-index: 5;
 
     width: 100%;
+    transition: background-color 0.6s;
     background-color: ${(props) =>
         props.active ? "rgba(0, 0, 0, 1)" : "rgba(0, 0, 0, 0.6)"};
 
@@ -71,6 +96,42 @@ const Container = styled.div<{ active?: string }>`
 
     @media (max-width: 800px) {
         padding: 10px 0;
+    }
+
+    @media (max-width: 800px) {
+        padding: 10px 0;
+    }
+`;
+
+const IconBurger = styled.div<{ active?: string }>`
+    width: 30px;
+    height: 3px;
+    background-color: #ffffff;
+    position: relative;
+
+    border-radius: 10px;
+
+    transform: rotate(${(props) => (props.active ? 45 : 0)}deg);
+
+    &:before,
+    &:after {
+        content: "";
+        width: 100%;
+        height: 3px;
+        background-color: #ffffff;
+        position: absolute;
+        transition: transform 0.1s ease;
+        border-radius: 10px;
+    }
+
+    &:before {
+        top: ${(props) => (props.active ? 0 : -9)}px;
+        transform: rotate(${(props) => (props.active ? 90 : 0)}deg);
+    }
+
+    &:after {
+        bottom: ${(props) => (props.active ? 0 : -9)}px;
+        transform: rotate(${(props) => (props.active ? 90 : 0)}deg);
     }
 `;
 
@@ -106,56 +167,14 @@ const NavbarContainer = styled.div`
     }
 `;
 
-const NavbarItem = styled.div<{ active?: string }>`
-    font-size: 30px;
-    color: ${(props) => (props.active ? "var(--secondary)" : "var(--white)")};
-    transition: color 0.2s ease-out;
-
-    &:hover {
-        color: var(--secondary);
-    }
-
-    cursor: pointer;
-`;
-
-const BurgerIcon = styled.div`
-    display: none;
-
-    width: 30px;
-    height: 20px;
-    cursor: pointer;
-
-    -webkit-tap-highlight-color: transparent;
-    position: relative;
-
-    &:active {
-        background-color: rgba(100, 7, 7, 0.4);
-        border-radius: 50%;
-        transition: background-color 0.12s ease-out;
-    }
-
-    @media (max-width: 1000px) {
-        display: block;
-    }
-`;
-
-const BurgerSpan = styled.span<{ position: string }>`
-    display: block;
-    width: 30px;
-    height: 3px;
-
-    background-color: var(--white);
-    transition-duration: 0.25s;
-
-    position: absolute;
-    top: ${(props) => props.position};
-`;
-
 const BurgerWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 30px;
+    @media (max-width: 1000px) {
+        gap: 10px;
+    }
 `;
 
 const TouchedWrap = styled.div<{ size: string; showed?: string }>`
@@ -165,6 +184,8 @@ const TouchedWrap = styled.div<{ size: string; showed?: string }>`
     width: ${(props) => props.size};
     height: ${(props) => props.size};
     cursor: pointer;
+
+    z-index: 12;
 
     -webkit-tap-highlight-color: transparent;
 

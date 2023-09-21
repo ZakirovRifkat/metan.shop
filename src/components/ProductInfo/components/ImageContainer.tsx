@@ -112,7 +112,7 @@ export const ImageContainer = ({ ...props }: Props) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2, ease:'linear' }}
+                        transition={{ duration: 0.2, ease: "linear" }}
                     />
                 </AnimatePresence>
             </MainImage>
@@ -137,9 +137,15 @@ export const ImageContainer = ({ ...props }: Props) => {
 
 const Container = styled.div`
     width: 100%;
-    height: 65%;
+    height: 70%;
     display: flex;
     gap: 15px;
+    @media (max-width:480px) {
+        height: 60%;   
+    }
+    @media (max-width:400px) {
+        height: 50%;   
+    }
 `;
 const MainImage = styled(motion.div)`
     width: 80%;

@@ -9,6 +9,7 @@ import "./anim.css";
 export const MainBannerAnimation = () => {
     const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
     const components: any = [Banner1, Banner2, Banner3];
+    // const components: any = [Banner2];
 
     useEffect(() => {
         const timer = setTimeout(() => {
