@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import { Product, ProductParams } from "../../../api/types";
+import { Product } from "../../../api/types";
 
 export type Types = "Hoodie" | "Mikey" | "T-shirts" | "Accessories";
 export type TagData = {

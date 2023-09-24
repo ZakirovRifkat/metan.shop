@@ -61,7 +61,7 @@ export const Banner1 = () => {
     return (
         <Container image={image1} nomer={1}>
             <Blackout />
-            <ContainerContent>
+            <ContainerContent position={1}>
                 <Content>
                     <Title
                         variants={Variants1}
@@ -99,19 +99,16 @@ export const Banner2 = () => {
     return (
         <Container image={image2} nomer={2}>
             <Blackout />
-            <ContainerContent>
-                <ContainerDS>
-                    <Button
-                        exs="true"
-                        variants={ButtonVar2}
-                        initial={"initial"}
-                        animate={"animate"}
-                        style={{ position: "relative", bottom: "0" }}
-                        whileTap={{ scale: 0.9 }}
-                    >
-                        СЛУШАТЬ
-                    </Button>
-                </ContainerDS>
+            <ContainerContent position={2}>
+                <Button
+                    variants={ButtonVar2}
+                    initial={"initial"}
+                    animate={"animate"}
+                    style={{ position: "relative", bottom: "0" }}
+                    whileTap={{ scale: 0.9 }}
+                >
+                    СЛУШАТЬ
+                </Button>
             </ContainerContent>
         </Container>
     );
@@ -120,7 +117,7 @@ export const Banner3 = () => {
     return (
         <Container image={image3} nomer={3}>
             <Blackout />
-            <ContainerContent left={"1"}>
+            <ContainerContent position={3}>
                 <Content left={"1"}>
                     <Title
                         variants={Variants2}
@@ -147,7 +144,6 @@ export const Banner3 = () => {
                     variants={ButtonVar}
                     initial={"initial"}
                     animate={"animate"}
-                    left={"0px"}
                     whileTap={{ scale: 0.9 }}
                 >
                     КУПИТЬ БИЛЕТЫ
@@ -157,13 +153,9 @@ export const Banner3 = () => {
     );
 };
 const Container = styled.div<{ image: string; nomer: number }>`
-    position: relative;
     width: 100%;
     height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
 
     background-image: url(${(props) => props.image});
     background-position: center;
@@ -172,41 +164,53 @@ const Container = styled.div<{ image: string; nomer: number }>`
 
     @media (max-width: 700px) {
         background-position: ${(props) =>
-            props.nomer == 1 ? "left" : props.nomer == 3 ? "right" : "center"};
-        background-position-x: ${(props) =>
-            props.nomer == 1 ? "-300px" : props.nomer == 3 ? "-500px" : null};
+            props.nomer == 1 ? "left 40% bottom 0%" : props.nomer == 3 ? "right 32% bottom 0%" : "center"};
     }
-    @media (max-width: 540px) {
-        background-position-x: ${(props) =>
-            props.nomer == 3 ? "-600px" : null};
-    }
-`;
-const ContainerContent = styled.div<{ left?: string }>`
-    position: relative;
-    width: var(--container);
-    height: 100vh;
-    max-width: 3000px;
-    display: flex;
-    justify-content: ${(props) => (props.left ? "start" : "end")};
-    align-items: center;
-`;
-const ContainerDS = styled(motion.div)<{ left?: string }>`
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    bottom: 150px;
-    width: 100%;
 
     @media (max-width: 1000px) {
-        bottom: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
+`;
+const ContainerContent = styled.div<{ position: number }>`
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 20vh;
+    width: var(--container);
+    max-width: 3000px;
+    display: flex;
+    flex-direction: column;
+    align-items: ${(props) =>
+        props.position == 1 ? "end" : props.position == 3 ? "start" : "center"};
+    justify-content: center;
+    gap: 15px;
+    z-index: 1;
+
+    @media (max-width: 1000px) {
+        position: static;
+        display: flex;
+        left: 0;
+        transform: translate(0%);
+    }
+`;
+const Content = styled.div<{ left?: string }>`
+    position: relative;
+    z-index: 2;
+    width: 668px;
+    display: flex;
+    flex-direction: column;
+    align-items: ${(props) => (props.left ? "start" : "end")};
+    gap: 10px;
     @media (max-width: 850px) {
-        bottom: 220px;
+        max-width: 500px;
+        width: 100%;
     }
     @media (max-width: 650px) {
-        bottom: 250px;
+        max-width: 320px;
+        width: 100%;
     }
 `;
 const Blackout = styled.div`
@@ -216,20 +220,14 @@ const Blackout = styled.div`
     width: 100%;
     height: 100vh;
     background-color: #00000078;
-    z-index: 1;
+    z-index: 1; 
+    @media (max-width:550px) {
+        background-color: #000000a9;
+    }
 `;
 
-const Button = styled(motion.div)<{
-    left?: string;
-    center?: string;
-    exs?: string;
-}>`
-    left: ${(props) => props.left};
-    transform: translate(${(props) => props.center});
-
+const Button = styled(motion.div)`
     padding: 15px 30px;
-    position: absolute;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -238,10 +236,6 @@ const Button = styled(motion.div)<{
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-
-    bottom: 150px;
-
-    z-index: 1;
 
     border-radius: 60px;
     border: 3px solid rgba(255, 255, 255, 0.85);
@@ -263,17 +257,6 @@ const Button = styled(motion.div)<{
         font-size: 23px;
         padding: 0 30px;
         padding: 10px 20px;
-
-        bottom: 200px;
-    }
-    @media (max-width: 850px) {
-        font-size: ${(props) => (props.exs ? "23px" : "15px")};
-        padding: ${(props) => (props.exs ? " 10px 20px" : " 8px 15px")};
-
-        bottom: 220px;
-    }
-    @media (max-width: 650px) {
-        bottom: 250px;
     }
 `;
 
@@ -309,22 +292,5 @@ const Quote = styled(motion.div)<{ left?: string }>`
     }
     @media (max-width: 650px) {
         font-size: 30px;
-    }
-`;
-const Content = styled.div<{ left?: string }>`
-    position: relative;
-    z-index: 2;
-    width: 668px;
-    display: flex;
-    flex-direction: column;
-    align-items: ${(props) => (props.left ? "start" : "end")};
-    gap: 10px;
-    @media (max-width: 850px) {
-        max-width: 500px;
-        width: 100%;
-    }
-    @media (max-width: 650px) {
-        max-width: 320px;
-        width: 100%;
     }
 `;

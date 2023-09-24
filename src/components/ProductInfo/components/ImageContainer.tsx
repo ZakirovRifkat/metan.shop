@@ -137,14 +137,14 @@ export const ImageContainer = ({ ...props }: Props) => {
 
 const Container = styled.div`
     width: 100%;
-    height: 70%;
+    height: 462px;
     display: flex;
     gap: 15px;
     @media (max-width:480px) {
-        height: 60%;   
+        height: 396px;   
     }
     @media (max-width:400px) {
-        height: 50%;   
+        height: 330px;   
     }
 `;
 const MainImage = styled(motion.div)`

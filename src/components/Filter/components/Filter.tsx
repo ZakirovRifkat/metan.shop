@@ -4,6 +4,7 @@ import { SelectLabel } from "../../CustomMui/Select/SelectLabel";
 import { Range } from "../../CustomMui/Range/Range";
 import { TagData, Types, GenderType } from "../../Merch/lib/store";
 import { debounce } from "lodash";
+import iconRub from "../assets/rub.png";
 
 type Props = {
     minPrice: number;
@@ -42,9 +43,6 @@ export const Filter = ({ ...props }: Props) => {
         };
     }, [minPrice, maxPrice]);
 
-    // useEffect(()=>{
-    //     console.log('1')
-    // },[props.type])
     useEffect(() => {
         if (minPrice !== props.minPrice) {
             setMinPrice(props.minPrice);
@@ -61,7 +59,7 @@ export const Filter = ({ ...props }: Props) => {
             props.setType(props.type.filter((item) => item !== value));
         }
     };
-    
+
     const ChangeGender = (value: GenderType) => {
         if (value != props.gender) {
             console.log("1");
@@ -115,12 +113,12 @@ export const Filter = ({ ...props }: Props) => {
                         <ActiveItem style={style} />
                     </SexFilter>
 
-                    <SelectContainer>
+                    {/* <SelectContainer>
                         <SelectLabel />
-                    </SelectContainer>
+                    </SelectContainer> */}
 
                     <SelectContainer mobile={"true"}>
-                        <SelectLabel />
+                        <SelectLabel type={props.type} setType={props.setType} types={props.arrayType}  />
                     </SelectContainer>
                 </SexContainer>
 
@@ -136,6 +134,7 @@ export const Filter = ({ ...props }: Props) => {
                             />
                             <InputContainer>
                                 <InputTags
+                                    icon={iconRub}
                                     placeholder={"от"}
                                     value={minPrice}
                                     onChange={(e) => {
@@ -143,6 +142,7 @@ export const Filter = ({ ...props }: Props) => {
                                     }}
                                 />
                                 <InputTags
+                                    icon={iconRub}
                                     placeholder={"до"}
                                     value={maxPrice}
                                     onChange={(e) => {
@@ -287,14 +287,18 @@ const InputContainer = styled.div`
     }
 `;
 
-const InputTags = styled.input`
+const InputTags = styled.input<{ icon?: string }>`
     ${tag}
     color:#777777;
     transition: color 0.2s ease-in;
     outline: none;
     width: 130px;
     height: 40px;
-    padding-left: 20px;
+    padding: 0px 20px;
+    background-image: url(${(props) => props.icon});
+    background-position: right 5% bottom 50%;
+    background-repeat: no-repeat;
+    background-size: 15px;
     &:focus {
         color: var(--white);
     }

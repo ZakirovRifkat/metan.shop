@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Image } from "./Image";
 import { css, styled } from "styled-components";
 import { useProduct } from "../lib/hook";
 import { observer } from "mobx-react-lite";
@@ -85,36 +84,38 @@ export const ProductInfo = observer(() => {
                     e.stopPropagation();
                 }}
             >
-                <ImageContainer data={test} />
-                <InfoContainer>
-                    <ProductTitle textstyle={"600"} textsize={"26px"}>
-                        {store.product?.ItemName}
-                    </ProductTitle>
-                    <ProductTitle textsize={"22px"}>
-                        Цена: {store.product?.Price}
-                    </ProductTitle>
-                    <SizeContainer>
-                        <SizeBtn>XS</SizeBtn>
-                        <SizeBtn>S</SizeBtn>
-                        <SizeBtn active="true">M</SizeBtn>
-                        <SizeBtn>L</SizeBtn>
-                        <SizeBtn>XL</SizeBtn>
-                    </SizeContainer>
-                    <BtnContainer>
-                        <Button
-                            whileTap={{ scale: 0.8 }}
-                            transition={{ duration: 0.01 }}
-                        >
-                            КУПИТЬ
-                        </Button>
-                        <Button
-                            whileTap={{ scale: 0.8 }}
-                            transition={{ duration: 0.01 }}
-                        >
-                            В КОРЗИНУ
-                        </Button>
-                    </BtnContainer>
-                </InfoContainer>
+                <ElementContainer>
+                    <ImageContainer data={test} />
+                    <InfoContainer>
+                        <ProductTitle textstyle={"600"} textsize={"26px"}>
+                            {store.product?.ItemName}
+                        </ProductTitle>
+                        <ProductTitle textsize={"22px"}>
+                            Цена: {store.product?.Price}
+                        </ProductTitle>
+                        <SizeContainer>
+                            <SizeBtn>XS</SizeBtn>
+                            <SizeBtn>S</SizeBtn>
+                            <SizeBtn active="true">M</SizeBtn>
+                            <SizeBtn>L</SizeBtn>
+                            <SizeBtn>XL</SizeBtn>
+                        </SizeContainer>
+                        <BtnContainer>
+                            <Button
+                                whileTap={{ scale: 0.8 }}
+                                transition={{ duration: 0.01 }}
+                            >
+                                КУПИТЬ
+                            </Button>
+                            <Button
+                                whileTap={{ scale: 0.8 }}
+                                transition={{ duration: 0.01 }}
+                            >
+                                В КОРЗИНУ
+                            </Button>
+                        </BtnContainer>
+                    </InfoContainer>
+                </ElementContainer>
             </ContentContainer>
         </Container>
     );
@@ -162,38 +163,40 @@ const Container = styled(motion.div)`
     z-index: 10;
     overflow-x: scroll;
     padding: 2vw 0;
-    @media (max-width: 600px) {
-        padding:0;
+    @media (max-width: 620px) {
+        padding: 0px;
     }
 `;
 const ContentContainer = styled(motion.div)`
+    background-color: #383838;
+    border-radius: 20px;
+    margin: auto auto;
+    padding: 45px 55px;
+
+    @media (max-width: 620px) {
+        padding: 6vw 6vw;
+        width: 100%;
+        min-height: 100vh;
+        height: max-content;
+        border-radius: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+`;
+
+const ElementContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 
-    max-width: 560px;
-    max-height: 740px;
-    min-height: 740px;
+    max-width: 450px;
     width: 100%;
-    height: calc(100vh - 4vw);
 
-    border-radius: 20px;
-    margin: auto auto;
-    padding: 45px 55px;
-    background-color: #383838;
-
-    @media (max-width: 600px) {
-        max-height: 100vh;
-        max-width: 100vw;
-        height: 100vh;
-        width: 100vw;
-        border-radius: 0px;
-        padding: 7vw 9vw;
-    }
-    @media (max-width:480px) {
-        justify-content: center;   
-    }
+    @media (max-width: 620px) {
+        justify-content: center;
+    } 
 `;
 
 const InfoContainer = styled.div`
@@ -205,7 +208,7 @@ const InfoContainer = styled.div`
     width: 100%;
     height: 30%;
     min-height: max-content;
-    gap: 10px;
+    gap: 15px;
 `;
 
 const ProductTitle = styled.div<{ textstyle?: string; textsize: string }>`

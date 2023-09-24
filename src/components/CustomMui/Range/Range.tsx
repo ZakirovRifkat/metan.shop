@@ -28,7 +28,6 @@ export const Range = ({ ...props }: Props) => {
                 getAriaValueText={valuetext}
                 step={1000}
                 sx={{
-                    margin: "0 12px",
                     color: "#fff",
                     "& .MuiSlider-thumb": {
                         backgroundColor: "#fff",
@@ -43,10 +42,11 @@ export const Range = ({ ...props }: Props) => {
 };
 
 const Container = styled.div`
+    padding: 0px 12px;
     @media screen and (max-width: 1040px) {
         width: 40%;
     }
     @media screen and (max-width: 655px) {
-        width: 60%;
+        width: 100%;
     }
 `;
