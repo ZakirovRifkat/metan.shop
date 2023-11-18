@@ -1,0 +1,33 @@
+.slider-enter {
+    width: max-content;
+    margin-left: 3000px;
+    overflow: hidden;
+    transition: margin-left 0.7s ease-out;
+    opacity: 1;
+    z-index: 1;
+}
+
+.slider-enter-active {
+    width: max-content;
+    margin-left: 0px;
+    transition: margin-left 0.7s ease-out;
+    overflow: hidden;
+    opacity: 1;
+    z-index: 1;
+}
+
+.slider-exit {
+    width: max-content;
+    overflow: hidden;
+    transition: all 1.0s ease-out;
+    opacity: 1;
+    z-index: 1;
+}
+
+.slider-exit-active {
+    width: max-content;
+    transition: all 1.0s ease-out;
+    opacity: 1;
+    z-index: 0;
+    overflow: hidden;
+}
